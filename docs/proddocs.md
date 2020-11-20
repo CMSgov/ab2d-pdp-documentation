@@ -1,5 +1,3 @@
-<style>
-</style>
 # Accessing AB2D Production Environment
 
 ## Audience
