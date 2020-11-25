@@ -104,11 +104,11 @@ A job can be broken down into four phases. These phases will be standard no matt
 | Obtain a JSON Web Token | Get a token for authentication with the AB2D API | N/A | Seconds | At least every hour during the job |
 | Start a Job | Start a job and save the unique id of the job | Export API | Seconds | Once a job |
 | Monitor a Job | Wait for the job to complete and get a list of files to download | Status API | Minutes to hours depending on contract size | Once every few minutes |
-| Downoad the Files | Download the files listed in the returned data from the Status API from a complete job | Download API | Minutes to hours depending on Internet download speeds | Once a job
+| Download the Files | Download the files listed in the returned data from the Status API from a complete job | Download API | Minutes to hours depending on Internet download speeds | Once a job
 
 ## Quickstart Step by Step Guides
 
-This guide is meant to provide a guide for an organization’s ***first production run**. As part of this guide the AB2D team has built sample scripts demonstrating how to run an export and how to automate an export. These scripts are meant to help organizations get started with the AB2D API but are not meant for long term usage in production as it does not provide sufficient error checking, security or auditing capabilities. Organizations should build up automation for their ETL processes beyond these scripts.
+This guide is meant to provide a guide for an organization’s ***first production run***. As part of this guide the AB2D team has built sample scripts demonstrating how to run an export and how to automate an export. These scripts are meant to help organizations get started with the AB2D API but are not meant for long term usage in production as it does not provide sufficient error checking, security or auditing capabilities. Organizations should build up automation for their ETL processes beyond these scripts.
 
 Please focus the most attention on ***Verifying Setup*** and ***Creating the Credentials File*** before attempting any of these scripts. Each individual guide assumes that the aforementioned steps have been completed.
 
@@ -209,7 +209,7 @@ If you wish to manually create this file from your credentials, you can:
 
 #### In Linux or Mac:
 You will be creating a file in a directory to place the Base64 credentials. Make sure you have write access to that
-directory. Let's use `credentials_Z123456_base64.txt` in the users home directory of `/home/abcduser` as an example.
+directory. Let's use `credentials_Z123456_base64.txt` in the user's home directory of `/home/abcduser` as an example.
 
 Open a bash terminal and type:
 
@@ -274,7 +274,7 @@ The format of the date is `2020-05-01T00:00:00.000-05:00`
 the repository or clone the repository using these [instructions](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
 
 1. Unzip or move the files into a specified directory. For our example, let's create a directory called `ab2d` in the home directory.
-Copy those script files that directory (`/home/abcduser/ab2d`).
+Copy those script files to that directory (`/home/abcduser/ab2d`).
 
 ##### Run the Scripts
 
@@ -324,7 +324,7 @@ as it will pause and recheck. Use the same shell.
 
 Once this script exists, it should have created a file called `response.json` in the current directory.
 This file will contain all the names of the files created as part of this batch job. Files have a max size
- so if the number of claim data records causes a file do exceed that size, a new file is created.
+ so if the number of claim data records causes a file to exceed that size, a new file is created.
  
 ###### Download the Claims Data Files
 Once `monitor-job.sh` finishes, we can now download the files from AB2D (again from the same shell)
@@ -392,10 +392,10 @@ until it is complete. Once complete, it outputs a list of files to be downloaded
     ```
     $JOB_RESULTS to check the contents of the variable
     ```
-    Do not close the shell the so that the value of `JOB_RESULTS` is preserved.
+    Do not close the shell so that the value of `JOB_RESULTS` is preserved.
     
 #### Download file(s)
-Next, we downlod the files specified in `JOB_RESULTS` into the current directory
+Next, we download the files specified in `JOB_RESULTS` into the current directory
 
 1. In the same PowerShell terminal download the results
     ```
@@ -544,7 +544,7 @@ so if you run them fom the same directory and at the same time, the scripts will
 Each contract has its own credentials so multiple text files can be created with the Base64 encoded
 credentials and passed as a parameter. The actual data files downloaded (NDJSON files) contain the contract number in the file name
 so they will not overwrite each other if a different contract is called. They will overwrite the files if the same job 
-is run again and should be avoided because the result may have a different number of files an be confusing.
+is run again and should be avoided because the result may have a different number of files can be confusing.
 
 It is also important that you run the different jobs in different terminals so that each terminal will have their own
 environment variables defined for their job.
