@@ -2,44 +2,50 @@
 
 ## Audience
 
-At this point, the organization has attested, elected an ADOS, and has received credentials to access production. You are receiving/using this document because you wish to access your organization’s claims data from the production environment. 
+At this point, your organization has attested, elected an ADOS, and has received credentials to access production. You are receiving/using this document because you wish to access your organization’s claims data from the production environment. 
 
 ## <a name="security_practices"></a>Security Practices
 
-The credential file contains sensitive information granting access to PII/PHI. Do not share this sensitive information in images, in plain text, or in chat.
+The credential file provided during on-boarding contains sensitive information granting access to PII/PHI. 
+Be extremely careful distributing this information and DO NOT SEND via email or chat as text, images, or videos.
 
-The most sensitive information provided in this file includes:
+The most sensitive information provided in the credential file includes:
 - OKTA_CLIENT_ID: unique id of {organization} in the AB2D system
 - OKTA_CLIENT_SECRET: unique password granting access to the AB2D system
 - AUTH: basic encoding of the client id and password that can be easily decoded
 
-Again be extremely careful distributing this information and DO NOT SEND via email or chat as text, images, or videos.
-
 ## Asking for Help
 
-If issues persist using these scripts or other scripts provided by the AB2D team, email the AB2D team at [ab2d@semanticbits.com](mailto:ab2d@semanticbits.com) 
+If you continue to have issues accessing production or have follow up questions not answered in this guide, please
+email the AB2D team at [ab2d@semanticbits.com](mailto:ab2d@semanticbits.com) 
 or join our Google Groups at: 
 [https://groups.google.com/u/1/g/cms-ab2d-api](https://groups.google.com/u/1/g/cms-ab2d-api). 
 
-When emailing the team please include the following information concerning the context of issues:
+When corresponding with the team please include the following information concerning the context of your issue:
 
 - What operating system is in use by the machine (Windows or Linux/Mac)?
 - What IP address does the machine have (see Verifying Setup)?
-- What is the HTTP status code (403, 400, etc.) that is being received, if applicable?
+- If applicable, what HTTP status code (403, 400, etc.) is being received?
 - A description of the issue including the stage of the export causing the issue.
-- Any logs (be extremely careful with the logs you provide). Refer to the [Security Practices](#security_practices) section as to which pieces of information are sensitive.
+- Any additional logs. Be extremely careful with the logs you provide as they can contain sensitive information. 
+(Refer to the [Security Practices](#security_practices) section to identify sensitive information).
 
-When emailing the team ***do not*** include any form of the credentials provided including any encoded form. Please double check any logs provided to make sure the logs do not contain the organization’s credentials.
+Do ***not*** include your organization's production credentials in any form when working with the AB2D team.
+Please review all encoded content and/or logs before sharing with the team to ensure they do not contain your
+credentials.
 
 ## Usage Guide
 
 ### API Restrictions:
-These export jobs are expensive to run and create files containing sensitive data therefore the API enforces usage limitations and does not allow claims data to persist for too long.
+Our export jobs are expensive to run and create files containing sensitive data. In order to mitigate these risks,
+the API enforces usage restrictions and limits how long export files are stored by the system.
 
 #### List of Restrictions: IMPORTANT
-1. Each contract is limited to one running export at a time. Jobs cannot be run concurrently. A job can be cancelled by the user if there is a reason the current job is not needed (or incorrectly submitted) before submitting a new one.
-1. ***Files created by an export are only stored by the AB2D API for 72 hours after an export job is completed. If the files are not downloaded 72 hours after creation then those files will be deleted automatically and a new job will have to be created.***
-1. ***Files created by an export can only be downloaded once. After being downloaded a file is immediately deleted.***
+1. Each contract is limited to one running export at a time. Jobs cannot be run concurrently. 
+A job can be cancelled by the user if it is no longer needed or incorrectly submitted before submitting a new one.
+1. Files created by an export are only stored by the AB2D API for 72 hours after the job complete. 
+Files will automatically be deleted after 72 hours and a new job will have to be created.
+1. Files created by an export can only be downloaded once. Files are immediately deleted after being downloaded.
 1. The API can only process so many export jobs at once. If the API is busy a submitted job may be queued for later processing.
 
 What you can do:
@@ -49,15 +55,18 @@ What you can do:
 
 ### Intended Usage / Suggestions
 
-Parts A & B claims data are updated periodically. Pulling data every day or even weekly is unnecessary. Our advice is to pull data bi-weekly, monthly, or quarterly. Additionally, because export jobs are time consuming, especially for large organizations, scheduling export jobs to run overnight is suggested. 
+Parts A & B claims data are updated periodically. Pulling data every day or even weekly is unnecessary. Our advice is to pull data bi-weekly, monthly, or quarterly. 
+Since export jobs can be time consuming, especially for large organizations, scheduling them to run overnight is highly suggested. 
 ***Be aware that files generated by an export job are only available for 72 hours hours after the job completes.***
 
-The AB2D team supports incremental searches so that a date can be supplied to the search to only pull data updated since a specific date. This functionality is supported by the `_since` parameter, explained [below](#since). This will pull data that has changed since a specific date. They may either have been created or updated since that date. The next search can use the latest updated EOB as the since date for the next job or the time of the last search if known.
+The AB2D team supports incremental searches which allows users to only pull data that has changed or updated since a specified date.
+This includes both newly created and updated data as the date provided.
+The next search can use the latest updated EOB as the since date for the next job or the time of the last search if known.
 
 ### AB2D Model
 
 ***Explanation of Benefits (EOBs) claims are not exported by the date services were provided but by the date the EOB was fully processed into the CMS system.***
-Conducting an export on one date does not guarantee that you have received EOBs for all services provided up to that date, only EOBs processed by that date, as indicated by their updateDate.
+Conducting an export does not guarantee that you have received EOBs for all services provided up to that date, only EOBs processed by that date, as indicated by their updateDate.
 
 ##### Services Provided Date vs. Date Processed Scenario
 
@@ -65,11 +74,16 @@ We have two inpatient stays
 1. Inpatient Stay on October 1st, 2020
 1. Inpatient Stay on October 1st, 2020
 
-For 1, an EOB claim is fully processed into the AB2D system on November 1st, 2020. If an organization exports claims data on November 5th, then claim A will be pulled.
+For 1, an EOB claim is fully processed by CMS and available to the AB2D system on November 1st, 2020. 
+If an organization exports claims data on November 5th, then claim A will be pulled.
 
-For 2, an EOB claim is fully processed into the AB2D system on December 1st, 2020. If an organization exports claims data on November 5th, the claim for B will obviously not be included. However if the organization later  exports on December 5th, the claim for B will be present and exported.
+For 2, an EOB claim is fully processed by CMS and available to the AB2D system on December 1st, 2020. 
+If an organization exports claims data on November 5th, the claim for B will not be included. 
+However, if the organization later export on December 5th, the claim will be present and exported.
 
-***EOB data can be added and updated. These updates can occur over a period of time. This can lead to scenarios where an organization exports an EOB twice. Organizations need to de-duplicate and update these EOBs.***
+EOB data can be added and updated over a period of time. 
+This can lead to scenarios where an organization exports an EOB twice. 
+Organizations need to de-duplicate and update these EOBs.
 
 Each EOB claim comes with a unique identifier and a last updated field. These fields can be used to conduct deduplication.
 
@@ -80,10 +94,13 @@ Each EOB claim comes with a unique identifier and a last updated field. These fi
 1. Organization XYZ pulls the updated Claim 123 on November 4th 2020
 
 ##### <a name="since"></a>Since Parameter
-To reduce the time that jobs take use the `_since` parameter in API calls. The `_since` parameter will allow you to grab EOBs data added since a specific date instead of all of the data available to the AB2D API.
+It is highly recommended and considered best practice to reduce job run times using the `_since` parameter on API calls.
+The `_since` parameter allows users to grab EOB data added or updated since a specified date rather than pulling all
+the data available to the API on each call.
 
-##### Example
-An example of this would be an organization XYZ that attested on March 1st 2020. The organization runs their first job on November 1st 2020. The organization runs their second job on December 1st 2020.
+##### Since Parameter Scenario
+Organization XYZ attests on March 1st 2020. The organization runs their first job on November 1st 2020. 
+The organization runs their second job on December 1st 2020.
 
 If XYZ does not use the `_since` parameter on their second job:
 
@@ -108,9 +125,12 @@ A job can be broken down into four phases. These phases will be standard no matt
 
 ## Quickstart Step by Step Guides
 
-This guide is meant to provide a guide for an organization’s ***first production run***. As part of this guide the AB2D team has built sample scripts demonstrating how to run an export and how to automate an export. These scripts are meant to help organizations get started with the AB2D API but are not meant for long term usage in production as it does not provide sufficient error checking, security or auditing capabilities. Organizations should build up automation for their ETL processes beyond these scripts.
+The purpose of this document is to provide a guide for an organization’s ***first production run***. 
+As part of this guide the AB2D team has built sample scripts demonstrating how to run and automate an export. 
+These scripts are meant to help organizations get started with the AB2D API but are not meant for long term use in production as they do not provide sufficient error checking, security or auditing capabilities. 
+Organizations should build more robust automation for their individual ETL processes.
 
-Please focus the most attention on ***Verifying Setup*** and ***Creating the Credentials File*** before attempting any of these scripts. Each individual guide assumes that the aforementioned steps have been completed.
+Please focus your attention on ***Verifying Setup*** and ***Creating the Credentials File*** before attempting any of these scripts. Each individual guide assumes that the aforementioned steps have been completed.
 
 Additionally, read and understand the usage of the Since Parameter as detailed in the Intended Usage / Suggestions section.
 
@@ -118,8 +138,8 @@ Additionally, read and understand the usage of the Since Parameter as detailed i
 
 1. Requirements: information/resources required to export a job
 1. Verifying Setup: check that the machine used for exports has the appropriate access and that the credentials provided by the AB2D team work.
-1. Creating credentials file: guide to creating a credentials file
 1. AB2D Sandbox vs. Production differences that may influence the job.
+1. Creating credentials file: guide to creating a credentials file
 1. Executing a bulk claim data download
     1. Bash guide (Linux & Mac)
     1. Powershell Guide (Windows)
@@ -134,11 +154,12 @@ Additionally, read and understand the usage of the Since Parameter as detailed i
 1. Permission on that machine to execute a Python script, Bash Terminal or PowerShell Terminal
 
 ### Verifying Your Setup
-Before attempting to export data confirm the machine’s access to the AB2D API.
+Confirm your machine’s access to the AB2D API before attempting to export data. 
+During the on-boarding process, your organization provided 8 IPs to be whitelisted by the AB2D team.
+You will need to confirm that the IP address of the machine performing the export matches one of these whitelisted IP addresses.
+Remember that these IP addresses must be public and static. Please email the AB2D team if any changes are needed and we will provide you with the proper form. 
 
-#### Verify Your IP Address
-Check that the IP  address of the machine performing export is one provided to and whitelisted by the AB2D team.
-
+#### Verifying Your IP Address
 1. If you have a browser, open it on the machine you are connecting from, and go to this website 
 [http://checkip.amazonaws.com/](http://checkip.amazonaws.com/).
 Remember your IP should be public and static. Your Organization should have provided no more than 8 IPs to be whitelisted. Should you need to change these, please email us and we will provide you with a form to do so. 
@@ -167,15 +188,16 @@ If the response has an HTTP status of 403 your URL request has been rejected and
 
 ### AB2D Sandbox vs. AB2D Production
 
-- Sandbox: The sandbox AB2D environment is a public environment available for learning how the AB2D API works and to experiment with automation concerning the API.
-- Production: The production AB2D environment is a private environment available only to attested and credentialed PDPs for exporting relevant patient data.
+- ***Sandbox:*** The sandbox AB2D environment is a public environment available for users to learn how the API works and 
+conduct testing for newly developed features, tools and automation using the API.
+- ***Production:*** The production AB2D environment is a private environment available only to attested and credentialed PDPs for exporting relevant patient data.
 
 Key differences:
-- Sandbox - contains test contracts which are publicly available
+- Contracts/Data - Sandbox contains test contracts with synthetic data which are publicly available
 - URL - The sandbox and production environments have different URLs to access them:
   - Sandbox - ```https://sandbox.ab2d.cms.gov```
   - Production - ```https://api.ab2d.cms.gov```
-- Identity provider - the sandbox identity provider is a test provider only which means that you cannot get a bearer token giving you access to real claims data using the sandbox identity provider. Only the production identity provider can give access to your organization’s claims data. The locations from which you can retrieve bearer tokens differ: 
+- Identity provider - the sandbox identity provider is a test provider and cannot provide a bearer token giving you access to real claims data. Only the production identity provider can give access to your organization’s claims data. The locations from which you can retrieve bearer tokens differ: 
   - Sandbox - ```https://test.idm.idp.cms.gov```
   - Production - ```https://idp.cms.gov```
 - IP Whitelisting - our production environment provides extremely limited access. Only IP addresses explicitly provided by your organization can access the production system.
@@ -211,34 +233,34 @@ If you wish to manually create this file from your credentials, you can:
 You will be creating a file in a directory to place the Base64 credentials. Make sure you have write access to that
 directory. Let's use `credentials_Z123456_base64.txt` in the user's home directory of `/home/abcduser` as an example.
 
-Open a bash terminal and type:
+- Open a bash terminal and type:
 
 ```
 AUTH_FILE=/home/abcduser/credentials_Z123456_base64.txt
 OKTA_CLIENT_ID=abcd
 OKTA_CLIENT_SECRET=badpassword
 ```
-To encode the credentials as base64
+- To encode the credentials as base64
 ```
 echo -n "${OKTA_CLIENT_ID}:${OKTA_CLIENT_PASSWORD}" | base64 > $AUTH_FILE
 ```
 
 #### In Powershell 
 
-Open a PowerShell terminal
+- Open a PowerShell terminal
 
-Create a new empty file:
+- Create a new empty file:
 
 ```
 $AUTH_FILE=C:\users\abcduser\credentials_Z123456_base64.txt
 New-Item -Path $AUTH_FILE -ItemType File
 ```
 
-Create the base64 credentials:
+- Create the base64 credentials:
 ```
 $BASE64_ENCODED_ID_PASSWORD='{Base64-encoded abcd:badpassword}'
 ```
-Save the base64 credentials as the only line in the auth file:
+- Save the base64 credentials as the only line in the auth file:
 ```
 Set-Content -Path $AUTH_FILE $BASE64_ENCODED_ID_PASSWORD
 ```
@@ -247,11 +269,26 @@ The credential file should contain one line and contain the Base64 encoded value
 
 ## API Guides
 
-This section will describe the different tools you can use to extract bulk data for a contract.
+This section provides step by step instructions for the use of sample Bash, Powershell and Python scripts built 
+by the AB2D team to demonstrate how to run and automate an export. These clients are provided as examples and 
+are not meant for long term use in production. 
 
-### Bash API Client Step by Step Guide
+This may be a great starting point for your engineering or development teams however it is important to note 
+that the AB2D team does not regularly maintain the sample clients. Additionally, a best-effort was made to 
+ensure the clients are secure but they have not undergone comprehensive formal security testing. Each user/organization 
+is responsible for conducting their own review and testing prior to implementation.
 
-This guide shows how to use an existing example API client that we provide consisting of several scripts. The example API client is free to use or extend. However, this client is just an example implementation and you should implement your own client suited to your needs.
+When used in production, these clients have the ability to download PII/PHI information. You should therefore 
+ensure the environment in which these scripts are run is secured in a way to allow for storage of PII/PHI. 
+Additionally, when used in the production environment the scripts will require use of your production credentials. 
+Please ensure that your credentials are handled in a secure manner and not printed to logs or the terminal. 
+Ensuring the privacy of data is the responsibility of each user and/or organization.
+
+### Sample Bash API Client Step by Step Guide
+
+This guide shows how to use our sample Bash API client consisting of several scripts. The example API client is 
+free to use or extend. However, this client is just an example implementation and organizations should implement thier
+own client suited to their needs.
 
 | Scripts| |
 | :---------------------------------  | --- |
@@ -343,8 +380,8 @@ ls /home/abcdhome/ab2d/*.ndjson
 Z123456_0001.ndjson
 Z123456_0002.ndjson
 ```
-### Windows API Client Step by Step Guide
-The Windows API Client will always download files to your current working directory. This means that 
+### Sample Windows API Client Step by Step Guide
+The sample Windows API Client will always download files to your current working directory. This means that 
 if you run a job you should move the files out of the directory afterwards into a new directory 
 just for that download.
 
@@ -397,27 +434,30 @@ until it is complete. Once complete, it outputs a list of files to be downloaded
 #### Download file(s)
 Next, we download the files specified in `JOB_RESULTS` into the current directory
 
-1. In the same PowerShell terminal download the results
-    ```
-    .\download-results.ps1
-    ```
-2. Check whether the files were downloaded
-    ```
-    dir
-    ```
+In the same PowerShell terminal download the results
+
+```
+.\download-results.ps1
+```
+    
+Check whether the files were downloaded
+
+```
+dir
+```
    
-   The files will be NDJSON (New line delimited JSON) files. That means each line in the files is one claim written in JSON.
-   The naming standard for the files is to use the contract number and then a number indicating which value it is in the series
-   of created files.
+The files will be NDJSON (New line delimited JSON) files. That means each line in the files is one claim written in JSON.
+The naming standard for the files is to use the contract number and then a number indicating which value it is in the series
+of created files.
        
-   For example, if there are two files for our sample contract `Z123456`, you should see:
-   ```
-   Z123456_0001.ndjson
-   Z123456_0002.ndjson
-   ```
+For example, if there are two files for our sample contract `Z123456`, you should see:
+```
+Z123456_0001.ndjson
+Z123456_0002.ndjson
+```
    
-### Python API Client Step by Step Guide
-The Python API Client can be used in any environment, but must be installed on the machine with the white listed IP address.
+### Sample Python API Client Step by Step Guide
+The sample Python API Client can be used in any environment, but must be installed on the machine with the white listed IP address.
 To install Python3 and Pip (Python Installation Installer), go [here](https://realpython.com/installing-python/).
 Make sure you have at least Python 3.6 and pip3 installed. Some machines come with Python2 by default which
 is deprecated.
