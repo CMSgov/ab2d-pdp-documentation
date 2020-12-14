@@ -22,6 +22,7 @@ or join our Google Groups at:
 [https://groups.google.com/u/1/g/cms-ab2d-api](https://groups.google.com/u/1/g/cms-ab2d-api). 
 
 When corresponding with the team please include the following information concerning the context of your issue:
+This is a change I am making.
 
 - What operating system is in use by the machine (Windows or Linux/Mac)?
 - What IP address does the machine have (see Verifying Setup)?
