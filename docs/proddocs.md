@@ -2,7 +2,7 @@
 
 ## Audience
 
-At this point, your organization has attested, elected an ADOS, and has received credentials to access production. You are receiving/using this document because you wish to access your organization’s claims data from the production environment. 
+You are using this document because you wish to access your organization’s claims data from the production environment. At this point, your organization has attested, elected an ADOS, and has received credentials to access production. 
 
 ## <a name="security_practices"></a>Security Practices
 
@@ -22,13 +22,12 @@ or join our Google Groups at:
 [https://groups.google.com/u/1/g/cms-ab2d-api](https://groups.google.com/u/1/g/cms-ab2d-api). 
 
 When corresponding with the team please include the following information concerning the context of your issue:
-This is a change I am making.
 
 - What operating system is in use by the machine (Windows or Linux/Mac)?
 - What IP address does the machine have (see Verifying Setup)?
 - If applicable, what HTTP status code (403, 400, etc.) is being received?
 - A description of the issue including the stage of the export causing the issue.
-- Any additional logs. Be extremely careful with the logs you provide as they can contain sensitive information. 
+- Any logs that may help us in resolving the issue. Use caution when sharing any log files as they may contain sensitive information. 
 (Refer to the [Security Practices](#security_practices) section to identify sensitive information).
 
 Do ***not*** include your organization's production credentials in any form when working with the AB2D team.
@@ -42,12 +41,10 @@ Our export jobs are expensive to run and create files containing sensitive data.
 the API enforces usage restrictions and limits how long export files are stored by the system.
 
 #### List of Restrictions: IMPORTANT
-1. Each contract is limited to one running export at a time. Jobs cannot be run concurrently. 
-A job can be cancelled by the user if it is no longer needed or incorrectly submitted before submitting a new one.
-1. Files created by an export are only stored by the AB2D API for 72 hours after the job complete. 
-Files will automatically be deleted after 72 hours and a new job will have to be created.
-1. Files created by an export can only be downloaded once. Files are immediately deleted after being downloaded.
-1. The API can only process so many export jobs at once. If the API is busy a submitted job may be queued for later processing.
+1.	Each contract is limited to one running export at a time. Jobs cannot be run concurrently. A job can be cancelled if it is no longer needed or incorrectly submitted before submitting a new one.
+2.	Files created by an export are only stored by the AB2D API for 72 hours after the job is complete. Files will be automatically deleted after 72 hours and a new job will have to be created.
+3.	Files created by an export can only be downloaded once. Files are immediately deleted after being downloaded.
+4.	The API can only process so many export jobs at once. If the API is busy, a submitted job may be queued for later processing. 
 
 What you can do:
 - Start a single job, monitor the job, and download within the 72 hour period.
@@ -72,27 +69,20 @@ Conducting an export does not guarantee that you have received EOBs for all serv
 ##### Services Provided Date vs. Date Processed Scenario
 
 We have two inpatient stays
-1. Inpatient Stay on October 1st, 2020
-1. Inpatient Stay on October 1st, 2020
+1. Inpatient Stay A on October 1st, 2020
+1. Inpatient Stay B on October 1st, 2020
 
-For 1, an EOB claim is fully processed by CMS and available to the AB2D system on November 1st, 2020. 
-If an organization exports claims data on November 5th, then claim A will be pulled.
-
-For 2, an EOB claim is fully processed by CMS and available to the AB2D system on December 1st, 2020. 
-If an organization exports claims data on November 5th, the claim for B will not be included. 
-However, if the organization later export on December 5th, the claim will be present and exported.
-
-EOB data can be added and updated over a period of time. 
-This can lead to scenarios where an organization exports an EOB twice. 
-Organizations need to de-duplicate and update these EOBs.
+For 1, an EOB claim is fully processed by CMS and available to the AB2D system on November 1st, 2020. If an organization exports claims data on November 5th, then claim A will be pulled.
+For 2, an EOB claim is fully processed by CMS and available to the AB2D system on December 1st, 2020. If an organization exports claims data on November 5th, the claim for B will not be included. However, if the organization runs a later export on December 5th, the claim will be present and exported.
+EOB data can be added and updated over a period of time. This can lead to scenarios where an organization exports an EOB twice. Organizations need to de-duplicate and update these EOBs.
 
 Each EOB claim comes with a unique identifier and a last updated field. These fields can be used to conduct deduplication.
 
 #### Claims Data Update Scenario
-1. Claim 123 is added for beneficiary on November 1st 2020
-1. Organization XYZ pulls Claim 123 on November 2nd 2020
-1. Claim 123 is updated on November 3rd 2020
-1. Organization XYZ pulls the updated Claim 123 on November 4th 2020
+1.	Claim 123 is added for beneficiary on November 1st, 2020
+2.	Organization XYZ pulls Claim 123 on November 2nd, 2020
+3.	Claim 123 is updated on November 3rd, 2020
+4.	Organization XYZ pulls the updated Claim 123 on November 4th, 2020
 
 ##### <a name="since"></a>Since Parameter
 It is highly recommended and considered best practice to reduce job run times using the `_since` parameter on API calls.
@@ -137,22 +127,23 @@ Additionally, read and understand the usage of the Since Parameter as detailed i
 
 ### Overview
 
-1. Requirements: information/resources required to export a job
-1. Verifying Setup: check that the machine used for exports has the appropriate access and that the credentials provided by the AB2D team work.
-1. AB2D Sandbox vs. Production differences that may influence the job.
-1. Creating credentials file: guide to creating a credentials file
-1. Executing a bulk claim data download
-    1. Bash guide (Linux & Mac)
-    1. Powershell Guide (Windows)
-    1. Python Guide (Any environment but requires Python to be installed)
+1.  Requirements: information/resources required to export a job
+2.	Verifying Setup: check that the machine used for exports has the appropriate access and that the credentials provided by the AB2D teamwork.
+3.	AB2D Sandbox vs. Production differences that may influence the job.
+4.	Creating credentials file: guide to creating a credentials file
+5.	Executing a bulk claim data download
+    - Bash guide (Linux & Mac)
+    - PowerShell Guide (Windows)
+    - Python Guide (Any environment but requires Python to be installed)
+
 
 ### Requirements
 
-1. The credentials file provided to your organization’s attestor
-1. Access to a machine with a whitelisted IP address
-1. Internet access for the whitelisted machine
-1. Permission on that machine to download files
-1. Permission on that machine to execute a Python script, Bash Terminal or PowerShell Terminal
+1.	The credentials file provided to your organization’s attestor
+2.	Access to a machine with a whitelisted IP address
+3.	Internet access for the whitelisted machine
+4.	Permission on that machine to download files
+5.	Permission on that machine to execute a Python script, Bash Terminal or PowerShell Terminal
 
 ### Verifying Your Setup
 Confirm your machine’s access to the AB2D API before attempting to export data. 
@@ -161,12 +152,13 @@ You will need to confirm that the IP address of the machine performing the expor
 Remember that these IP addresses must be public and static. Please email the AB2D team if any changes are needed and we will provide you with the proper form. 
 
 #### Verifying Your IP Address
+To check your IP:
 1. If you have a browser, open it on the machine you are connecting from, and go to this website 
 [http://checkip.amazonaws.com/](http://checkip.amazonaws.com/).
 Remember your IP should be public and static. Your Organization should have provided no more than 8 IPs to be whitelisted. Should you need to change these, please email us and we will provide you with a form to do so. 
-1. If you do not have access to a browser on the connecting machine, query from the command line of the machine you are running on
+2. If you do not have access to a browser on the connecting machine, query from the command line of the machine you are running on
     1. On Linux/Mac open a terminal and run the following command: “curl -X GET checkip.amazonaws.com”
-    1. On Windows open a Powershell terminal and run the following command “Invoke-RestMethod -Method GET checkip.amazonaws.com”
+    2. On Windows open a Powershell terminal and run the following command “Invoke-RestMethod -Method GET checkip.amazonaws.com”
 
 #### Verify AB2D Production Connectivity
 Check that the machine performing the export belongs to the provided  IPs .
@@ -222,12 +214,13 @@ will give you an idea of what the value looks like.
 For your convenience, we have provided the Base64 encoded clientId:password. 
 
 1. Open the credentials file provided by the AB2D team
-1. Copy the Base64 encoded string inside the credential file
-1. Create a new text file using your editor of choice
-1. Paste the Base64 encoded string into the new text file (the file should only have one line and look similar to our example)
-1. Save that file as the credential file (for example `C:\users\abcduser\credentials_Z123456_base64.txt`) and note 
+2. Copy the Base64 encoded string inside the credential file
+3. Create a new text file using your editor of choice
+4. Paste the Base64 encoded string into the new text file (the file should only have one line and look similar to our example)
+5. Save that file as the credential file (for example `C:\users\abcduser\credentials_Z123456_base64.txt`) and note 
 the location and name of the file for later as it will be a parameter in other scripts.
 
+#### Manually create credential file
 If you wish to manually create this file from your credentials, you can:
 
 #### In Linux or Mac:
@@ -311,7 +304,7 @@ The format of the date is `2020-05-01T00:00:00.000-05:00`
 1. The bash API is available [here](https://github.com/CMSgov/ab2d-sample-client-bash). Either download a ZIP file of
 the repository or clone the repository using these [instructions](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
 
-1. Unzip or move the files into a specified directory. For our example, let's create a directory called `ab2d` in the home directory.
+2. Unzip or move the files into a specified directory. For our example, let's create a directory called `ab2d` in the home directory.
 Copy those script files to that directory (`/home/abcduser/ab2d`).
 
 ##### Run the Scripts
@@ -319,9 +312,9 @@ Copy those script files to that directory (`/home/abcduser/ab2d`).
 ###### Setup the Environment
 1. Open a bash shell. Use this same shell to run all commands. We will be setting environment variables that are only
 valid inside this shell. ***Do not close this terminal before the download is complete***.
-1. Go to the directory where the script files are located (in our example `/home/abcduser/ab2d`). Perform a `ls` in that directory to make sure the four scripts are there
-1. Remember where you put the Base64 credential file (in our example, it was `/home/abcduser/credentials_Z123456_base64.txt`).
-1. Run the following command:
+2. Go to the directory where the script files are located (in our example `/home/abcduser/ab2d`). Perform a `ls` in that directory to make sure the four scripts are there
+3. Remember where you put the Base64 credential file (in our example, it was `/home/abcduser/credentials_Z123456_base64.txt`).
+4. Run the following command:
 ```
 source bootstrap.sh -prod --directory /home/abcduser/ab2d --auth /home/abcduser/credentials_Z123456_base64.txt --since 2020-05-01T00:00:00.000-05:00
 ```
@@ -403,17 +396,17 @@ Either download a ZIP file of the repository or clone the repository using these
 
 #### Prepare the Environment Variables
 1. Open a PowerShell terminal and go do the directory which contains the powershell scripts.
-1. Set the location of the file containing your organizations AB2D credentials encoded as Base64
+2. Set the location of the file containing your organizations AB2D credentials encoded as Base64
     ```
     $AUTH_FILE=C:\users\abcduser\credentials_Z123456_base64.txt
     ```
 
-1. Set the URL that the authentication provider is available at 
+3. Set the URL that the authentication provider is available at 
     ```
     $AUTHENTICATION_URL='https://idm.cms.gov/oauth2/aus2ytanytjdaF9cr297/v1/token'
     ```
 
-1. Set the URL that AB2D is available at
+4. Set the URL that AB2D is available at
     ```
     $AB2D_API_URL='https://api.ab2d.cms.gov/api'
     ```
@@ -426,7 +419,7 @@ until it is complete. Once complete, it outputs a list of files to be downloaded
     ```
     $JOB_RESULTS = &.\create-and-monitor-export-job.ps1 | select -Last 1
     ```
-1. Check the contents of the variable `JOB_RESULTS`. It should contain the list of files to download.
+2. Check the contents of the variable `JOB_RESULTS`. It should contain the list of files to download.
     ```
     $JOB_RESULTS to check the contents of the variable
     ```
@@ -476,30 +469,30 @@ The format of the date is `2020-05-01T00:00:00.000-05:00`
 #### Download API Client
 1. Download the bash api client available [here](https://github.com/CMSgov/ab2d-sample-client-python). 
 Either download a ZIP file of the repository or clone the repository using these [instructions](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
-1. Open a terminal and navigate to the home directory of the downloaded files. Let's say it is either
+2. Open a terminal and navigate to the home directory of the downloaded files. Let's say it is either
 `C:\Users\abcduser\ab2d\` for windows or `/home/abcduser/ab2d` for linux/Mac. Verify the files
 exist by either doing a `dir` or `ls`. You should see the `job-cli.py` script and a `README`
 
 #### Prepare Environment Variables
 
 1. In a Bash Shell or PowerShell terminal, navigate to the directory with the script file.
-1. Set the variable `AUTH_FILE` which points to an existing file containing the base64 credentials
+2. Set the variable `AUTH_FILE` which points to an existing file containing the base64 credentials
 
     | Environment | Command |
     | --- | --- |
     | Linux/Mac: | `AUTH_FILE=/home/abcduser/credentials_Z123456_base64.txt` |
     | Windows: | `$AUTH_FILE=C:\users\abcduser\credentials_Z123456_base64.txt` |
 
-1. Define a directory to save the exported files in. Create it if necessary. This is where the export files
+3. Define a directory to save the exported files in. Create it if necessary. This is where the export files
 will be saved. For our example, let's say it's `/home/abcduser/ab2d` or `C:\users\abcduser\ab2d`.
-1. Set the variable `DIRECTORY` which points to that directory in the previous step
+4. Set the variable `DIRECTORY` which points to that directory in the previous step
 
     | Environment | Command |
     | --- | --- |
     | Linux/Mac: | `DIRECTORY=/home/abcduser/ab2d` |
     | Windows: | `$DIRECTORY=C:\users\abcduser\ab2d` |
     
-1. Do not close this shell
+5. Do not close this shell
 
 #### Start the Job
 Use the same shell used to prepare the environment variables to perform this task. 
@@ -508,14 +501,14 @@ Use the same shell used to prepare the environment variables to perform this tas
     python --version
     ```
    You should see a version that is at least 3.6.
-1. Start the export job:
+2. Start the export job:
 
     | Environment | Command |
     | --- | --- |
     | Linux/Mac: | `python job-cli.py -prod --auth $AUTH_FILE --directory $DIRECTORY --only_start` |
     | Windows: | `python job-cli.py -prod --auth %AUTH_FILE% --directory %DIRECTORY% --only_start` |
     
-1. Verify that a job id was created. The `job_id.txt` file should have been created. The file should contain
+3. Verify that a job id was created. The `job_id.txt` file should have been created. The file should contain
 a string similar in ***format*** to `133039b8-c74c-422f-8836-8335c13f5a8d`.
 
     | Environment | Command |
@@ -535,7 +528,7 @@ Use the same shell used to prepare the environment variables to perform this tas
     | Linux/Mac: | `python job-cli.py -prod --auth $AUTH --directory $DIRECTORY --only_monitor` |
     | Windows: | `python job-cli.py -prod --auth %AUTH% --directory %DIRECTORY% --only_monitor` |
     
-1. When the job is completed the script should automatically save a list of files to download. To view the list:
+2. When the job is completed the script should automatically save a list of files to download. To view the list:
 
     | Environment | Command |
     | --- | --- |
@@ -554,7 +547,7 @@ If the download script fails you can run it again without worrying about overwri
     | Linux/Mac: | `python job-cli.py -prod --auth $AUTH --directory $DIRECTORY --only_download` |
     | Windows: | `python job-cli.py -prod --auth %AUTH% --directory %DIRECTORY% --only_download` |
 
-1. List the files that you have downloaded and verify that they are present
+2. List the files that you have downloaded and verify that they are present
 
     | Environment | Command |
     | --- | --- |
