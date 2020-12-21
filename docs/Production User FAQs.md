@@ -10,7 +10,7 @@ An Identity Provider (IdP) is a service that stores, verifies and managers user 
 ### JSON Web Token (JWT) & Bearer Token
 (These may be used interchangeably).
 
-JSON web tokens (JWT), also referred to as Bearer Tokens,  are used during the OAuth 2.0 authentication/authorization process to verify a user's identity. During this process, a user (in this case an PDP organization) will provide Okta with the credentials provided by the AB2D Team. Okta will return the user a JWT which serves as verification of your identity with the AB2D API.  JWTs are temporary and expire after an hour, after which time you must retrieve a new token.
+JSON web tokens (JWT), also referred to as Bearer Tokens,  are used during the [OAuth 2.0](https://oauth.net/2/) authentication/authorization process to verify a user's identity. During this process, a user (in this case an PDP organization) will provide Okta with the credentials provided by the AB2D Team. Okta will return the user a JWT which serves as verification of your identity with the AB2D API.  JWTs are temporary and expire after an hour, after which time you must retrieve a new token.
 
 A user must provide a valid JWT everytime they wish to access the AB2D API. AB2D checks with Okta to ensure the token provided matches their records to verify your identity and authorization. If the requirements are satisfied, then access is granted to the AB2D API.
 
