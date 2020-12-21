@@ -1,10 +1,11 @@
 # General Definitions
+
 ## Authentication
 ### Base64 
 A basic encoding meant to take your token from a text format to a standard ASCII format that is easier for computers to interpret.
 
 ### Okta & Identity Providers
-An Identity Provider (IdP) is a service that stores, verifies and managers user identities. CMS uses a third party identity provider tool named Okta  for organizations using the AB2D API. The AB2D Team will provide each participating client organization with a set of Okta credentials required to retrieve a one-time use, time boxed JSON web token (JWT)/Bearer token used to access the AB2D API.
+An Identity Provider (IdP) is a service that stores, verifies and managers user identities. CMS uses a third party identity provider tool named [Okta] (https://support.okta.com/help/s/article/What-is-Okta?language=en_US) for organizations using the AB2D API. The AB2D Team will provide each participating client organization with a set of Okta credentials required to retrieve a one-time use, time boxed JSON web token (JWT)/Bearer token used to access the AB2D API.
 
 ### JSON Web Token (JWT) & Bearer Token
 (These may be used interchangeably).
