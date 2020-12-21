@@ -1,11 +1,14 @@
-General Definitions
-Authentication
-Base64 
+# General Definitions
+
+## Authentication
+
+### Base64 
 A basic encoding meant to take your token from a text format to a standard ASCII format that is easier for computers to interpret.
-Okta & Identity Providers
+
+### Okta & Identity Providers
 An Identity Provider (IdP) is a service that stores, verifies and managers user identities. CMS uses a third party identity provider tool named Okta  for organizations using the AB2D API. The AB2D Team will provide each participating client organization with a set of Okta credentials required to retrieve a one-time use, time boxed JSON web token (JWT)/Bearer token used to access the AB2D API.
 
-JSON Web Token (JWT) & Bearer Token
+### JSON Web Token (JWT) & Bearer Token
 (These may be used interchangeably) 
 
 JSON web tokens (JWT), also referred to as Bearer Tokens,  are used during the OAuth 2.0 authentication/authorization process to verify a user's identity. During this process, a user (in this case an PDP organization) will provide Okta with the credentials provided by the AB2D Team. Okta will return the user a JWT which serves as verification of your identity with the AB2D API.  JWTs are temporary and expire after an hour, after which time you must retrieve a new token.
@@ -13,19 +16,22 @@ JSON web tokens (JWT), also referred to as Bearer Tokens,  are used during the O
 A user must provide a valid JWT everytime they wish to access the AB2D API. AB2D checks with Okta to ensure the token provided matches their records to verify your identity and authorization. If the requirements are satisfied, then access is granted to the AB2D API.
 
 For more information see https://jwt.io/introduction/. 
-AB2D API & Job
+
+## AB2D API & Job
 The AB2D API is a CMS interface that standalone Part D Providers can use to export Medicare A & B parts claims data.
-Definitions
+
+### Definitions
 Application Programing Interface (API): publicly facing interface used to share information that organizations can access if they have completed the on-boarding process with the AB2D Team.
 Job: a unit of work exporting Parts A & B information and compiling it for an organization to download. Jobs are triggered by the BulkDownloadAPI.
 
-List of APIs that AB2D Provides
+### List of APIs that AB2D Provides
 
 Export API: start a job to export data 
 Status API: monitor the status of a job
 Download API: download the results of a job
 Health API: check the health of the AB2D API (up, down, busy, etc.)
-HTTP Headers
+
+### HTTP Headers
 HTTP headers contain additional information about an HTTP request or response that can be used to do additional filtering/processing.
 
 List of headers that organizations provide on their requests:
@@ -38,7 +44,8 @@ Content-Location: HTTPS URL to get the status of a job or a file
 Content-Length: number of bytes in the response body
 Content-Type: The type of content contained in the response (should match the Accept header)
 X-Progress: current progress of a job returned by status API
-HTTP Codes
+
+### HTTP Codes
 200 -  Request completed successfully
 202 - Request accepted but still processing
 400 - Bad Request, general response when something with the request is blatantly wrong. Like missing a request parameter or body.
@@ -48,7 +55,8 @@ HTTP Codes
 405 - Method not allowed. You are trying to execute a method which the endpoint does not support. Example calling /secure/get as a POST method but the endpoint actually only supports GET methods.
 
 More information on standard HTTP Codes: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes 
-Production User FAQs
+
+# Production User FAQs
 
 What is a Bearer Token? 
 A bearer token is just another name for a JSON Web Token (JWT).
