@@ -55,51 +55,43 @@ List of headers that AB2D provides as responses:
 More information on standard HTTP Codes: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes 
 
 ## Production User FAQs
-- **What is a Bearer Token?** 
-A bearer token is just another name for a JSON Web Token (JWT).
-- **How do I get the Bearer Token?**
-Retrieve a JSON Web Token from the identity provider, Okta, using your credentials.
+- **What is a Bearer Token?** A bearer token is just another name for a JSON Web Token (JWT).
+- **How do I get the Bearer Token?** Retrieve a JSON Web Token from the identity provider, Okta, using your credentials.
 - **What does a 403 error mean when trying to get the token?**
-1. The credentials provided may have a typo or syntax error including spaces, hidden characters, etc.
-2. The credentials provided may have been encoded to base64 incorrectly. Check that the base64 credentials are correct.
-3. Check that you are connecting to the production identity provider (idp.cms.gov) and not the sandbox identity provider (test.idp.idm.cms.gov)
-4. Check that you are providing the correct Authorization header
---The header should be “Authorization : Basic Auth <base64 credentials>”
+    1. The credentials provided may have a typo or syntax error including spaces, hidden characters, etc.
+    1. The credentials provided may have been encoded to base64 incorrectly. Check that the base64 credentials are correct.
+    1. Check that you are connecting to the production identity provider (idp.cms.gov) and not the sandbox identity provider (test.idp.idm.cms.gov)
+    1. Check that you are providing the correct Authorization header (the header should be “Authorization : Basic Auth <base64 credentials>”)
 - **How do I figure out what my IP address is?**
-1. If you have a browser, open it on the machine you wish to connect to the AB2D API from, and go to this website http://checkip.amazonaws.com/ 
-1. If you do not have a browser query from the command line of the machine you wish to connect to the AB2D API from:
---On Linux/Mac open a terminal and run the following command: “curl -X GET checkip.amazonaws.com”
---On Windows open a Powershell terminal and run the following command “Invoke-RestMethod -Method GET checkip.amazonaws.com”
+    1. If you have a browser, open it on the machine you wish to connect to the AB2D API from, and go to this website http://checkip.amazonaws.com/ 
+    1. If you do not have a browser query from the command line of the machine you wish to connect to the AB2D API from:
+       1. On Linux/Mac open a terminal and run the following command: “curl -X GET checkip.amazonaws.com”
+       1. On Windows open a Powershell terminal and run the following command “Invoke-RestMethod -Method GET checkip.amazonaws.com”
 - **The IP address is not correct, what should I do?**
-1. Determine if the machine in use is correct
-1. If the machine is correct then check with your IT team that the IP address is a static ip address. If the IP address is not static then it may have changed. We register IP specific IP addresses that are allowed to connect with the AB2D API so you must have a static ip address.
+    1. Determine if the machine in use is correct
+    1. If the machine is correct then check with your IT team that the IP address is a static ip address. If the IP address is not static then it may have changed. We register IP specific IP addresses that are allowed to connect with the AB2D API so you must have a static ip address.
 - **How do I determine if my address can connect to AB2D? Using one of three methods:**
-1. On the command line of the machine you wish to connect to the AB2D API, run one of the two following commands:
---On Linux/Mac in a terminal run: “curl -X GET https://api.ab2d.cms.gov/health --verbose”
---On Windows in a powershell terminal run “Invoke-RestMethod -Method GET https://api.ab2d.cms.gov/health”
-1. In Postman type create a new GET request against the following URL: https://api.ab2d.cms.gov/health. If the response has an HTTP status of 200 then the request is okay.
-1. In a browser, on the machine, go to the following URL https://api.ab2d.cms.gov/swagger-ui/index.html 
+    1. On the command line of the machine you wish to connect to the AB2D API, run one of the two following commands:
+        1. On Linux/Mac in a terminal run: “curl -X GET https://api.ab2d.cms.gov/health --verbose”
+        1. On Windows in a powershell terminal run “Invoke-RestMethod -Method GET https://api.ab2d.cms.gov/health”
+    1. In Postman type create a new GET request against the following URL: https://api.ab2d.cms.gov/health. If the response has an HTTP status of 200 then the request is okay.
+    1. In a browser, on the machine, go to the following URL https://api.ab2d.cms.gov/swagger-ui/index.html 
 - **If I attempt to start a job and I get __ error code, what do I do?**
-1. 403 - Then your bearer token may not be correct or may have expired, regenerate the bearer token
-1. 400 or 404 - Then the endpoint you attempted to start a job at does not exist. Check that you are using the correct endpoint.
-- **What does a 200 code mean when starting a job?** 
-This means the export job has started successfully. In the headers in the request should be the endpoint to find out the current status of the job.
-- **What does a 202 code mean when querying the status?**
-This means the export job is currently running and has not finished. In the headers returned in the response you can see what % done the job is.
+    1. 403 - Then your bearer token may not be correct or may have expired, regenerate the bearer token
+    1. 400 or 404 - Then the endpoint you attempted to start a job at does not exist. Check that you are using the correct endpoint.
+- **What does a 200 code mean when starting a job?** This means the export job has started successfully. In the headers in the request should be the endpoint to find out the current status of the job.
+- **What does a 202 code mean when querying the status?** This means the export job is currently running and has not finished. In the headers returned in the response you can see what % done the job is.
 - **Why is my job stuck at 0% complete? Why is my job queueing and not starting immediately?**
 The AB2D API can only run so many jobs at once. If the API is busy the job will be queued in a backlog to be executed at some point in the future.
 - **How do I cancel a job that is already started?**
-1. On the command line run one of the two following commands
---On Linux/Mac in a terminal run: “curl -X DELETE https://api.ab2d.cms.gov/api/v1/fhir/Job/{jobUuid}/$status --verbose”. Make sure to fill in {jobUuid} with the id of the running job.
---On Windows in a powershell terminal run “Invoke-RestMethod -Method DELETE https://api.ab2d.cms.gov/api/v1/fhir/Job/{jobUuid}/$status”. Make sure to fill in {jobUuid} with the id of the running job.
-1. In Postman type create a new DELETE request against the following URL: https://api.ab2d.cms.gov/api/v1/fhir/Job/{jobUuid}/$status. Note the request parameter jobUuid which must be set in Postman.
-1. In a browser, on the machine, go to the following URL https://api.ab2d.cms.gov/swagger-ui/index.html#/Status/deleteRequestUsingDELETE and enter the job id.
-- **What response am I expecting when the job finishes successfully?**
-You should expect to get a response with a JSON object containing the list of files you can download and the URLs to query to do so.
-- **What happens if the job fails?**
-The status API will return an error concerning the job. Any files created by the job are deleted.
-- **Can I retrieve the results of a job that fails?**
-No you cannot.
+    1. On the command line run one of the two following commands
+        1. On Linux/Mac in a terminal run: “curl -X DELETE https://api.ab2d.cms.gov/api/v1/fhir/Job/{jobUuid}/$status --verbose”. Make sure to fill in {jobUuid} with the id of the running job.
+        1. On Windows in a powershell terminal run “Invoke-RestMethod -Method DELETE https://api.ab2d.cms.gov/api/v1/fhir/Job/{jobUuid}/$status”. Make sure to fill in {jobUuid} with the id of the running job.
+    1. In Postman type create a new DELETE request against the following URL: https://api.ab2d.cms.gov/api/v1/fhir/Job/{jobUuid}/$status. Note the request parameter jobUuid which must be set in Postman.
+    1. In a browser, on the machine, go to the following URL https://api.ab2d.cms.gov/swagger-ui/index.html#/Status/deleteRequestUsingDELETE and enter the job id.
+- **What response am I expecting when the job finishes successfully?** You should expect to get a response with a JSON object containing the list of files you can download and the URLs to query to do so.
+- **What happens if the job fails?** The status API will return an error concerning the job. Any files created by the job are deleted.
+- **Can I retrieve the results of a job that fails?** No you cannot.
 - **I tried to download the files and got an error message**
-403 - your bearer token may have expired or may be incorrect, regenerate the bearer token
-4xx - you can’t download the files more than once and the files are deleted 72 hours after a job completes.
+    1. 403 - your bearer token may have expired or may be incorrect, regenerate the bearer token
+    1. 4xx - you can’t download the files more than once and the files are deleted 72 hours after a job completes.
