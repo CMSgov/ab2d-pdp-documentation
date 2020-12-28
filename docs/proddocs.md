@@ -128,13 +128,13 @@ Additionally, read and understand the usage of the Since Parameter as detailed i
 ### Overview
 
 1.  Requirements: information/resources required to export a job
-2.	Verifying Setup: check that the machine used for exports has the appropriate access and that the credentials provided by the AB2D teamwork.
-3.	AB2D Sandbox vs. Production differences that may influence the job.
-4.	Creating credentials file: guide to creating a credentials file
-5.	Executing a bulk claim data download
-    - Bash guide (Linux & Mac)
-    - PowerShell Guide (Windows)
-    - Python Guide (Any environment but requires Python to be installed)
+1.	Verifying Setup: check that the machine used for exports has the appropriate access and that the credentials provided by the AB2D teamwork.
+1.	AB2D Sandbox vs. Production differences that may influence the job.
+1.	Creating credentials file: guide to creating a credentials file
+1.	Executing a bulk claim data download:
+      1. Bash guide (Linux & Mac)
+      1. PowerShell Guide (Windows)
+      1. Python Guide (Any environment but requires Python to be installed)
 
 
 ### Requirements
