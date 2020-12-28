@@ -1,4 +1,4 @@
-# General Definitions
+# General Definitions In Use
 
 ## Authentication
 ### Base64 
@@ -16,7 +16,7 @@ A user must provide a valid JWT everytime they wish to access the AB2D API. AB2D
 
 For more information see https://jwt.io/introduction/. 
 
-## AB2D API & Job
+## AB2D API & Job Quick Overview
 The AB2D API is a CMS interface that standalone Part D Providers can use to export Medicare A & B parts claims data.
 
 ### Definitions
@@ -54,7 +54,7 @@ List of headers that AB2D provides as responses:
 
 More information on standard HTTP Codes: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes 
 
-## Production User FAQs
+## Common User Questions
 - **What is a Bearer Token?** A bearer token is just another name for a JSON Web Token (JWT).
 - **How do I get the Bearer Token?** Retrieve a JSON Web Token from the identity provider, Okta, using your credentials.
 - **What does a 403 error mean when trying to get the token?**
