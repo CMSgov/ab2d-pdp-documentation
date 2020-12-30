@@ -10,14 +10,14 @@ The repository also provides sample scripts, which demonstrate how to pull data 
 
 * [AB2D Documentation Repo](https://github.com/CMSgov/ab2d-private-)
   * [Accessing Production](https://github.com/CMSgov/ab2d-private-/docs/proddocs.md)
-  * [Production User FAQs](https://github.com/CMSgov/ab2d-private-/docs/Production User FAQs.md)
+  * [Production User FAQs](https://github.com/CMSgov/ab2d-private-/docs/ProductionUserFAQs.md)
   
 ## Sample Client Repos
 
 The sample client repos found below are direct links to the sample scripts referenced throughout our documentation:
 * [Python Sample Client](https://github.com/CMSgov/ab2d-sample-client-python/)
 * [Bash Sample Client](https://github.com/CMSgov/ab2d-sample-client-bash/)
-* [Powershell Sample Client](https://github.com/CMSgov/ab2d-sample-client-powershell/)
+* [Powershell Sample Client] (https://github.com/CMSgov/ab2d-sample-client-powershell/)
 
 It is important to note that the AB2D team does **not** regularly maintain the sample clients. Additionally, a best-effort was made to ensure the clients are secure but they have **not** undergone comprehensive formal security testing. Each user/organization is responsible for conducting their own review and testing prior to implementation
 
