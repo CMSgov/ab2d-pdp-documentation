@@ -7,7 +7,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      REPO: https://github.com/CMSgov/ab2d-private-
+      REPO: https://github.com/CMSgov/ab2d-pdp-documentation
       REMOTE_EXCLUDES_URL: https://raw.githubusercontent.com/semanticbits/ab2d-gitleaks-automation/master/ab2d-private-/gitleaks.toml
       GITLEAKS_VERSION: v6.2.0
     steps:
