@@ -9,7 +9,7 @@ jobs:
     env:
       REPO: https://github.com/CMSgov/ab2d-pdp-documentation
       REMOTE_EXCLUDES_URL: https://raw.githubusercontent.com/semanticbits/ab2d-gitleaks-automation/master/ab2d-private-/gitleaks.toml
-      GITLEAKS_VERSION: v6.2.0
+      GITLEAKS_VERSION: v7.2.1
     steps:
     - name: Execute Gitleaks
       run: |
@@ -17,8 +17,8 @@ jobs:
         wget https://github.com/zricethezav/gitleaks/releases/download/${GITLEAKS_VERSION}/gitleaks-linux-amd64 -O gitleaks
         chmod +x gitleaks
         echo ${GITHUB_SHA}
-        echo "gitleaks --repo=${REPO} -v --pretty --redact --commit=${GITHUB_SHA} --config=gitleaks.toml"
-        ./gitleaks --repo=${REPO} -v --pretty --redact --commit=${GITHUB_SHA} --config=gitleaks.toml --access-token=${{ secrets.ACCESS_TOKEN }}
+        echo "gitleaks --repo-url=${REPO} -v --redact --commit=${GITHUB_SHA} --config=gitleaks.toml"
+        ./gitleaks --repo-url=${REPO} -v --redact --commit=${GITHUB_SHA} --config=gitleaks.toml --access-token=${{ secrets.ACCESS_TOKEN }}
     - name: Slack notification
       if: failure()
       env:
