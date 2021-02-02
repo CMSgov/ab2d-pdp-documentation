@@ -584,5 +584,5 @@ It is also important that you run the different jobs in different terminals so t
 environment variables defined for their job.
 
 ## FAQs
-Our [FAQ](https://docs.google.com/document/d/1INlu-QIsonE-KMjEW7R9W27MjRPPQRm9bzxn3y2rHFQ/edit?usp=sharing) document may answer additional questions you have. If not, refer to the Asking for Help section to get in touch. Thank you. 
+Our [FAQ](./Production%20User%20FAQs.md) document may answer additional questions you have. If not, refer to the Asking for Help section to get in touch. Thank you. 
 
