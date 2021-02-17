@@ -12,13 +12,19 @@ This purpose of this document is to help users understand:
 
 The goal of the AB2D API team is to provide best practices and usage strategies, which empower our users to efficiently use and maximize the value of our API.  This includes ensuring organizations understand how to access our production API and pull data frequently and incrementally.
 
-The AB2D API team has provided and documented some of the following functionality to achieve this goal:
+The AB2D API team has provided and documented the following functionality to achieve this goal:
 
 
 
-1. The ability to pull only the most recent claims using the _since parameter
-2. The ability to detect claims status updates. [Please reference the Claims Representation Details document for more information].
-3. The ability to detect claims updates. [Please reference the Claims Representation Details document for more information].
+1. The ability to pull only the most recent claims using the [_since parameter](#the-since-parameter) including an
+   [example](#why-you-should-use-the-_since-parameter).
+1. The ability to detect claims status updates. See [Claims Representation Details](./Claims%20Representation%20Details.md) for more.
+1. The ability to detect claims updates. See [Claims Representation Defails](./Claims%20Representation%20Details.md) for more.
+
+To help understand the _since parameter the following has also been included:
+
+1. The underlying [model](#incremental-export-model-overview) behind exports.
+1. A full [example](#example-export-workflow) demonstrating how to run multiple exports
 
 <span style="text-decoration:underline;">IMPORTANT:</span> This document assumes that you have read and run your first production job already. If you have not, please read the [Usage Guide](./docs/Production%20Access.md#usage-guide) in the Production Access document before proceeding.
 
@@ -99,7 +105,7 @@ AB2D claims data source receives weekly updates from its upstream data source. T
 To prevent this scenario, the AB2D API rounds down the _since parameter to a date that we know an update will not be running.
 
 
-### Examples \
+### Examples
 
 
 For reference, December 1st, 2020 (2020-12-01) was a Tuesday.
@@ -220,74 +226,40 @@ Running the job on December 16th (2020-12-16T00:00:00-08:00)
 
 1. Retrieve a JWT token
 
-   $BASE64_AUTH=<base64 credentials>
-
-
-    $ BEARER_TOKEN=$(curl -X POST  "$IDP_URL?grant_type=client_credentials&scope=clientCreds" \
-
-
+   ```bash
+   BASE64_AUTH=<base64 credentials>
+   BEARER_TOKEN=$(curl -X POST  "$IDP_URL?grant_type=client_credentials&scope=clientCreds" \
           -H "Content-Type: application/x-www-form-urlencoded" \
-
-
           -H "Accept: application/json" \
-
-
           -H "Authorization: Basic ${BASE64_AUTH}" | jq --raw-output ".access_token")
+   ```
 
 2. Start the job with the since parameter and** **save the rounded since parameter time for later use when processing the download files.
 
+   ```bash
    RESPONSE=$(curl "https://api.ab2d.cms.gov/api/v1/fhir/Patient/\$export?_outputFormat=application%2Ffhir%2Bndjson&_type=ExplanationOfBenefit&_since=2020-12-01T00:00:00-08:00" \
-
-
         -sD - \
-
-
         -H "accept: application/json" \
-
-
         -H "Accept: application/fhir+json" \
-
-
         -H "Prefer: respond-async" \
-
-
         -H "Authorization: Bearer ${BEARER_TOKEN}")
+   ```
 
-
-    HTTP/1.1 202 
-
-
+   Example response:
+   ```bash
+    HTTP/1.1 202
     Content-Location: https://api.sandbox.ab2d.cms.gov/api/v1/fhir/Job/072e08ff-889e-4208-9318-20f9adddec17/$status
-
-
     Since-Datetime: 2020-11-30T21:00:00-08:00
-
-
     X-Content-Type-Options: nosniff
-
-
     X-XSS-Protection: 1; mode=block
-
-
     Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-
-
     Pragma: no-cache
-
-
     Expires: 0
-
-
     Strict-Transport-Security: max-age=31536000 ; includeSubDomains
-
-
     X-Frame-Options: DENY
-
-
     Content-Length: 0
-
-
     Date: Mon, 01 Feb 2021 17:33:56 GMT
+   ```
 
 3. Save the date the job was started on. December 16th (2020-12-16T00:00:00-08:00).
 4. Repeatedly check status
@@ -302,74 +274,40 @@ Running the job on December 30th (2020-12-16T00:00:00-08:00)
 
 1. Retrieve a JWT token
 
-   $BASE64_AUTH=<base64 credentials>
-
-
-    $ BEARER_TOKEN=$(curl -X POST  "$IDP_URL?grant_type=client_credentials&scope=clientCreds" \
-
-
+   ```bash
+   BASE64_AUTH=<base64 credentials>
+   BEARER_TOKEN=$(curl -X POST  "$IDP_URL?grant_type=client_credentials&scope=clientCreds" \
           -H "Content-Type: application/x-www-form-urlencoded" \
-
-
           -H "Accept: application/json" \
-
-
           -H "Authorization: Basic ${BASE64_AUTH}" | jq --raw-output ".access_token")
+   ```
 
-2. Start the job with the since parameter and** **save the rounded since parameter time for later use when processing the download files.
+2. Start the job with the since parameter and **save the rounded since parameter time for later use when processing the download files.**
 
+   ```bash
    RESPONSE=$(curl "https://api.sandbox.ab2d.cms.gov/api/v1/fhir/Patient/\$export?_outputFormat=application%2Ffhir%2Bndjson&_type=ExplanationOfBenefit&_since=2020-12-16T00:00:00-08:00" \
-
-
         -sD - \
-
-
         -H "accept: application/json" \
-
-
         -H "Accept: application/fhir+json" \
-
-
         -H "Prefer: respond-async" \
-
-
         -H "Authorization: Bearer ${BEARER_TOKEN}")
-
-
+   ```
+   
+   Example response:
+   ```bash
     HTTP/1.1 202 
-
-
     Content-Location: https://api.sandbox.ab2d.cms.gov/api/v1/fhir/Job/072e08ff-889e-4208-9318-20f9adddec17/$status
-
-
-    Since-Datetime: 2020-12-14T21:00:00-08:00
-
-
+    Since-Datetime: 2020-12-14T21:00:00-08:00 # Save since datetime for later
     X-Content-Type-Options: nosniff
-
-
     X-XSS-Protection: 1; mode=block
-
-
     Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-
-
     Pragma: no-cache
-
-
     Expires: 0
-
-
     Strict-Transport-Security: max-age=31536000 ; includeSubDomains
-
-
     X-Frame-Options: DENY
-
-
     Content-Length: 0
-
-
     Date: Mon, 01 Feb 2021 17:33:56 GMT
+   ```
 
 3. Save the date the job was started on. December 31st (2020-12-31T00:00:00-08:00).
 4. Repeatedly check status
