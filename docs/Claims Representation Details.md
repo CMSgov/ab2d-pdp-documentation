@@ -260,7 +260,7 @@ For more information see:
 
 #### Example JSON
 
-```json
+```json5
 {
     ...
     "identifier": [
@@ -299,7 +299,7 @@ For more information:
 
 #### Example
 
-```json
+```json5
 {
     ...
     "identifier": [
@@ -401,13 +401,13 @@ Extensions referring to identifiers will have the following structure:
 
 #### JSON Example
 
-```json
+```json5
 {
-  # (1) url is always the same
+  // (1) url is always the same
   "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
   "valueIdentifier": {
 
-      # (4) whether the MBI is currently in use or a historical value will be found as an extension with the url
+      // (4) whether the MBI is currently in use or a historical value will be found as an extension with the url
       "extension": [
           {
             "url": "https://bluebutton.cms.gov/resources/codesystem/identifier-currency",
@@ -417,9 +417,9 @@ Extensions referring to identifiers will have the following structure:
           }
       ],
 
-      # (2) system will always be
+      // (2) system will always be
       "system": “http://hl7.org/fhir/sid/us-mbi”
-      # (3) the actual MBI value will always be found here
+      // (3) the actual MBI value will always be found here
       "value": "7S94E00AA00"
   }
 }
@@ -454,7 +454,7 @@ The list of extensions provided with each MBI includes an extension containing w
 
 If an MBI is current then the following example is representative.
 
-```json
+```json5
 {
     "extension": [
         {
@@ -478,7 +478,7 @@ If an MBI is current then the following example is representative.
 
 Whereas if the MBI was historic then the value would be switched to historic.
 
-```json
+```json5
 {
     "extension": [
         {
