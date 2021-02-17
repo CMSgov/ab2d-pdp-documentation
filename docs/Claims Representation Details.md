@@ -6,11 +6,12 @@ these fields when:
 
 
 
-*   Mapping a claim to a beneficiary
-*   Checking whether a claim is active or cancelled
-*   Identifying updates to claims
-*   Identifying when updates to a claim were received
-
+*   [Mapping a claim to a beneficiary](#identifying-patients)
+*   [Checking whether a claim is active or cancelled](#claim-status)
+*   [Claim identifiers and identifying updates to claims](#identifying-claims-and-claim-versions)
+*   [Identifying updated claims](#detecting-updates-to-existing-claims)
+*   [Identifying cancelled claims](#resolving-cancelled-claims)
+*   [Identifying duplicate claims](#detecting-duplicate-claims)
 
 ### Important AB2D Claims Fields
 
@@ -37,7 +38,7 @@ This field can be used to group together a family of claims.
 <p>
 - found in list of identifiers
    </td>
-   <td>Identifying Claims and Claim Versions
+   <td><a href="#identifying-claims-and-claim-versions">Identifying Claims and Claim Versions</a>
    </td>
   </tr>
   <tr>
@@ -49,7 +50,7 @@ This field can be used to group together a family of claims.
 <p>
 - found in list of identifiers
    </td>
-   <td>Identifying Claims and Claim Versions
+   <td><a href="#identifying-claims-and-claim-versions">Identifying Claims and Claim Versions</a>
    </td>
   </tr>
   <tr>
@@ -61,7 +62,7 @@ This field can be used to group together a family of claims.
 <p>
 - “active” or “cancelled”
    </td>
-   <td>Claim Status
+   <td><a href="#claim-status">Claim Status</a>
    </td>
   </tr>
   <tr>
@@ -71,7 +72,7 @@ This field can be used to group together a family of claims.
    </td>
    <td>eob.meta.lastUpdated
    </td>
-   <td>Created vs. Last Updated
+   <td><a href="#last-updated">Last Updated</a>
    </td>
   </tr>
   <tr>
@@ -83,7 +84,7 @@ This field can be used to group together a family of claims.
    </td>
    <td>eob.extension
    </td>
-   <td>Identifying Patients
+   <td><a href="#identifying-patients">Identifying Patients</a>
    </td>
   </tr>
   <tr>
@@ -93,7 +94,7 @@ This field can be used to group together a family of claims.
    </td>
    <td>n/a
    </td>
-   <td>Identifying Claims and Claim Versions
+   <td><a href="#identifying-claims-and-claim-versions">Identifying Claims and Claim Versions</a>
    </td>
   </tr>
 </table>
@@ -102,7 +103,9 @@ This field can be used to group together a family of claims.
 
 ## The Business Concept of a Claim vs. a Claim Object
 
-Each claim made by a provider translates into a claim object in AB2D’s upstream data source. **This claim object is immutable. Any change to the claim leads to the creation of a completely new claim object. **This new claim object “version” along with prior versions are stored by AB2D’s upstream data source and provided by the AB2D API.
+Each claim made by a provider translates into a claim object in AB2D’s upstream data source. **This claim object is immutable.
+Any change to the claim leads to the creation of a completely new claim object.** 
+This new claim object “version” along with prior versions are stored by AB2D’s upstream data source and provided by the AB2D API.
 
 Thus, the AB2D API can/will provide multiple claim objects that map to a single claim made by a provider.
 
@@ -139,7 +142,8 @@ While each change to a claim will result in a new claim object, each of these �
    <td>Claim ID
    </td>
    <td>The unique identification number of a single claim object “version”.  \
-Each change to a claim will result in a new claim object and result in the assignment of a new unique Claim ID. Each of these related Claim ID will share a common Claim Group ID. A Claim ID may have multiple claim lines.
+Each change to a claim will result in a new claim object and result in the assignment of a new unique Claim ID. Each of
+these related Claim ID will share a common Claim Group ID. A Claim ID may have multiple claim lines.
    </td>
   </tr>
 </table>
@@ -157,8 +161,9 @@ The claim comes with the following identifiers:
 1. Claim Group: 99995
 2. Claim ID: 321
 
-A month later on February 1st, 2020 the claim is updated and a new claim object version arrives. The new claim version has an additional line.  \
-\
+A month later on February 1st, 2020 the claim is updated and a new claim object version arrives.
+The new claim version has an additional line.
+
 This new claim version (Claim Version 2) comes with the following identifiers:
 
 
@@ -255,46 +260,22 @@ For more information see:
 
 #### Example JSON
 
-	{
-
-		…
-
-
-        "identifier": [
-
-
-            {
-
-
-              "system": "https://bluebutton.cms.gov/resources/variables/clm_id",
-
-
-              "value": "-10000521860"
-
-
-            },
-
-
-            {
-
-
-              "system": "https://bluebutton.cms.gov/resources/identifier/claim-group",
-
-
-              "value": "7653956538"
-
-
-            }
-
-
-          ]
-
-
-        ...
-
-
-    }
-
+```json
+{
+    ...
+    "identifier": [
+        {
+          "system": "https://bluebutton.cms.gov/resources/variables/clm_id",
+          "value": "-10000521860"
+        },
+        {
+          "system": "https://bluebutton.cms.gov/resources/identifier/claim-group",
+          "value": "7653956538"
+        }
+    ],
+    ...
+}
+```
 
 ### Claim ID
 
@@ -318,50 +299,28 @@ For more information:
 
 #### Example
 
-	{
-
-		…
-
-
-        "identifier": [
-
-
-            {
-
-
-              "system": "https://bluebutton.cms.gov/resources/variables/clm_id",
-
-
-              "value": "-10000521860"
-
-
-            },
-
-
-            {
-
-
-              "system": "https://bluebutton.cms.gov/resources/identifier/claim-group",
-
-
-              "value": "7653956538"
-
-
-            }
-
-
-          ]
-
-
-        ...
-
-
-    }
-
+```json
+{
+    ...
+    "identifier": [
+        {
+          "system": "https://bluebutton.cms.gov/resources/variables/clm_id",
+          "value": "-10000521860"
+        },
+        {
+          "system": "https://bluebutton.cms.gov/resources/identifier/claim-group",
+          "value": "7653956538"
+        }
+    ],
+    ...
+}
+```
 
 ## Claim Status
 
-**Claims reported by AB2D API have only two potential values for Claim Status **Claims are either “active” or “cancelled”.** If a claim object is “active” then it is the latest version of the claim received. If a claim is “cancelled”, then the claim object is not the latest version of the claim or the claim itself has been revoked.**
+**Claims reported by AB2D API have only two potential values for Claim Status**
+Claims are either “active” or “cancelled”. **If a claim object is “active” then it is the latest version of the
+claim received. If a claim is “cancelled”, then the claim object is not the latest version of the claim or the claim itself has been revoked.**
 
 Basic Information on Status:
 
@@ -400,7 +359,9 @@ For more information:
 
 ## Identifying Patients
 
-Each claim contains patient identifiers necessary to map a claim to a specific patient. The primary identifier used to associate a claim with a patient is the Medicare Beneficiary Identifier (MBI).** As part of each claim, AB2D reports all MBIs, known to the system, for a patient including the current MBI for a patient and historic MBIs used in the past for a patient.**
+Each claim contains patient identifiers necessary to map a claim to a specific patient.
+The primary identifier used to associate a claim with a patient is the Medicare Beneficiary Identifier (MBI).
+**As part of each claim, AB2D reports all MBIs, known to the system, for a patient including the current MBI for a patient and historic MBIs used in the past for a patient.**
 
 
 <table>
@@ -440,43 +401,29 @@ Extensions referring to identifiers will have the following structure:
 
 #### JSON Example
 
+```json
 {
+  # (1) url is always the same
+  "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+  "valueIdentifier": {
 
-(1) url is always the same
-
-      "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
-
-      "valueIdentifier": {
-
-(4) whether the MBI is currently in use or a historical value will be found as an extension with the url
-
-        "extension": [
-
+      # (4) whether the MBI is currently in use or a historical value will be found as an extension with the url
+      "extension": [
           {
-
-            "url": "https://bluebutton.cms.gov/resources/codesystem/identifier-currency", 
-
+            "url": "https://bluebutton.cms.gov/resources/codesystem/identifier-currency",
             "valueCoding": {
-
               "code": "current"
-
             }
-
           }
+      ],
 
-        ],
-
-(2) system will always be
-
-        "system": “http://hl7.org/fhir/sid/us-mbi”
-
-(3) the actual MBI value will always be found here
-
-        "value": "7S94E00AA00"
-
-      }
-
-    }
+      # (2) system will always be
+      "system": “http://hl7.org/fhir/sid/us-mbi”
+      # (3) the actual MBI value will always be found here
+      "value": "7S94E00AA00"
+  }
+}
+```
 
 
 ### Current MBI
@@ -507,130 +454,59 @@ The list of extensions provided with each MBI includes an extension containing w
 
 If an MBI is current then the following example is representative.
 
-
-    {
-
-
-        "extension": [
-
-
-            {
-
-
-              "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
-
-
-              "valueIdentifier": {
-
-
-                "extension": [
-
-
-                  {
-
-
-                    "url": "https://bluebutton.cms.gov/resources/codesystem/identifier-currency",
-
-
-                    "valueCoding": {
-
-
-                      "code": "current"
-
-
-                    }
-
-
-                  }
-
-
-                ],
-
-
-                "system": "http://hl7.org/fhir/sid/us-mbi",
-
-
-                "value": "7S94E00AA00"
-
-
+```json
+{
+    "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+          "valueIdentifier": {
+            "extension": [
+              {
+                "url": "https://bluebutton.cms.gov/resources/codesystem/identifier-currency",
+                "valueCoding": {
+                  "code": "current"
+                }
               }
-
-
-            }
-
-
-        ]
-
-
-    }
+            ],
+            "system": "http://hl7.org/fhir/sid/us-mbi",
+            "value": "7S94E00AA00"
+          }
+        }
+    ]
+}
+```
 
 Whereas if the MBI was historic then the value would be switched to historic.
 
-
-    {
-
-
-        "extension": [
-
-
-            {
-
-
-              "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
-
-
-              "valueIdentifier": {
-
-
-                "extension": [
-
-
-                  {
-
-
-                    "url": "https://bluebutton.cms.gov/resources/codesystem/identifier-currency",
-
-
-                    "valueCoding": {
-
-
-                      "code": "historic"
-
-
-                    }
-
-
-                  }
-
-
-                ],
-
-
-                "system": "http://hl7.org/fhir/sid/us-mbi",
-
-
-                "value": "7S94E00AA00"
-
-
+```json
+{
+    "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-identifier",
+          "valueIdentifier": {
+            "extension": [
+              {
+                "url": "https://bluebutton.cms.gov/resources/codesystem/identifier-currency",
+                "valueCoding": {
+                  "code": "historic"
+                }
               }
-
-
-            }
-
-
-        ]
-
-
-    }
-
-
-
+            ],
+            "system": "http://hl7.org/fhir/sid/us-mbi",
+            "value": "7S94E00AA00"
+          }
+        }
+    ]
+}
+```
 
 ## Detecting Updates to Existing Claims
 
 AB2D reports the most recent data available to it. Updates to existing claims may arrive at any time.
 
-**To detect updated claims look for a claim group with multiple Claim IDs. Only one claim version (one Claim ID) will be marked active and that is the latest version. If all claim versions are marked as canceled then the entire claim family group is not active. **
+**To detect updated claims look for a claim group with multiple Claim IDs. Only one claim version (one Claim ID)
+will be marked active and that is the latest version.
+If all claim versions are marked as canceled then the entire claim family group is not active.**
 
 To detect updated claims the following fields on each claim must be tracked:
 
