@@ -249,6 +249,7 @@ Running the job on December 16th (2020-12-16T00:00:00-08:00)
    ```bash
     HTTP/1.1 202
     Content-Location: https://api.sandbox.ab2d.cms.gov/api/v1/fhir/Job/072e08ff-889e-4208-9318-20f9adddec17/$status
+    # Save the since datetime for the next job
     Since-Datetime: 2020-11-30T21:00:00-08:00
     X-Content-Type-Options: nosniff
     X-XSS-Protection: 1; mode=block
@@ -284,6 +285,8 @@ Running the job on December 30th (2020-12-16T00:00:00-08:00)
 
 2. Start the job with the since parameter and **save the rounded since parameter time for later use when processing the download files.**
 
+   Use the `Since-Datetime` from the previous job as the `_since` date for this next job.
+
    ```bash
    RESPONSE=$(curl "https://api.sandbox.ab2d.cms.gov/api/v1/fhir/Patient/\$export?_outputFormat=application%2Ffhir%2Bndjson&_type=ExplanationOfBenefit&_since=2020-12-16T00:00:00-08:00" \
         -sD - \
@@ -297,7 +300,8 @@ Running the job on December 30th (2020-12-16T00:00:00-08:00)
    ```bash
     HTTP/1.1 202 
     Content-Location: https://api.sandbox.ab2d.cms.gov/api/v1/fhir/Job/072e08ff-889e-4208-9318-20f9adddec17/$status
-    Since-Datetime: 2020-12-14T21:00:00-08:00 # Save since datetime for later
+    # Save the since datetime for the next job 
+    Since-Datetime: 2020-12-14T21:00:00-08:00
     X-Content-Type-Options: nosniff
     X-XSS-Protection: 1; mode=block
     Cache-Control: no-cache, no-store, max-age=0, must-revalidate

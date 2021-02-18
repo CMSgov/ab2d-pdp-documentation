@@ -134,14 +134,14 @@ There are two primary Claim Identifiers used to logically identify and map relat
   <tr>
    <td>Claim Group ID
    </td>
-   <td>The unique identification number of the business concept of a claim made by a provider.  \
+   <td>The unique identification number of the business concept of a claim made by a provider.
 While each change to a claim will result in a new claim object, each of these “versions” falls under the same Claim Group ID. . The Claim Group ID is the parent or common identifier linking related claim object versions.
    </td>
   </tr>
   <tr>
    <td>Claim ID
    </td>
-   <td>The unique identification number of a single claim object “version”.  \
+   <td>The unique identification number of a single claim object “version”.
 Each change to a claim will result in a new claim object and result in the assignment of a new unique Claim ID. Each of
 these related Claim ID will share a common Claim Group ID. A Claim ID may have multiple claim lines.
    </td>
@@ -191,6 +191,8 @@ Note: Claim Version is not a field in the data and will not be reported to PDPs.
    </td>
    <td><strong>Claim Line ID</strong>
    </td>
+   <td><strong>Version</strong>
+   </td>
   </tr>
   <tr>
    <td rowspan="7" >99995
@@ -201,13 +203,19 @@ Note: Claim Version is not a field in the data and will not be reported to PDPs.
    </td>
    <td>ABCD
    </td>
+   <td>Version 1
+   </td>
   </tr>
   <tr>
    <td>DEFG
    </td>
+   <td>Version 1
+   </td>
   </tr>
   <tr>
    <td>HIJK
+   </td>
+   <td>Version 1
    </td>
   </tr>
   <tr>
@@ -217,17 +225,25 @@ Note: Claim Version is not a field in the data and will not be reported to PDPs.
    </td>
    <td>ABCD
    </td>
+   <td>Version 2
+   </td>
   </tr>
   <tr>
    <td>DEFG
+   </td>
+   <td>Version 2
    </td>
   </tr>
   <tr>
    <td>HIJK
    </td>
+   <td>Version 2
+   </td>
   </tr>
   <tr>
    <td>LMNO
+   </td>
+   <td>Version 2
    </td>
   </tr>
 </table>
@@ -268,6 +284,8 @@ For more information see:
           "system": "https://bluebutton.cms.gov/resources/variables/clm_id",
           "value": "-10000521860"
         },
+        // Claim group will be in the list of identifiers and identified
+        // by the claim group system
         {
           "system": "https://bluebutton.cms.gov/resources/identifier/claim-group",
           "value": "7653956538"
@@ -303,6 +321,8 @@ For more information:
 {
     ...
     "identifier": [
+        // Claim id will be in the list of identifiers and identified
+        // by the claim id system
         {
           "system": "https://bluebutton.cms.gov/resources/variables/clm_id",
           "value": "-10000521860"
@@ -464,6 +484,7 @@ If an MBI is current then the following example is representative.
               {
                 "url": "https://bluebutton.cms.gov/resources/codesystem/identifier-currency",
                 "valueCoding": {
+                  // The code value for identifier-currency will be current
                   "code": "current"
                 }
               }
@@ -488,6 +509,7 @@ Whereas if the MBI was historic then the value would be switched to historic.
               {
                 "url": "https://bluebutton.cms.gov/resources/codesystem/identifier-currency",
                 "valueCoding": {
+                  // The code value for identifier-currency will be historic
                   "code": "historic"
                 }
               }
