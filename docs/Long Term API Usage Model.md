@@ -234,7 +234,7 @@ Running the job on December 16th (2020-12-16T00:00:00-08:00)
           -H "Authorization: Basic ${BASE64_AUTH}" | jq --raw-output ".access_token")
    ```
 
-2. Start the job with the since parameter and** **save the rounded since parameter time for later use when processing the download files.
+2. Start the job with the since parameter **and** save the rounded since parameter time for later use when processing the download files.
 
    ```bash
    RESPONSE=$(curl "https://api.ab2d.cms.gov/api/v1/fhir/Patient/\$export?_outputFormat=application%2Ffhir%2Bndjson&_type=ExplanationOfBenefit&_since=2020-12-01T00:00:00-08:00" \
@@ -283,7 +283,7 @@ Running the job on December 30th (2020-12-16T00:00:00-08:00)
           -H "Authorization: Basic ${BASE64_AUTH}" | jq --raw-output ".access_token")
    ```
 
-2. Start the job with the since parameter and **save the rounded since parameter time for later use when processing the download files.**
+2. Start the job with the since parameter **and** save the rounded since parameter time for later use when processing the download files.
 
    Use the `Since-Datetime` from the previous job as the `_since` date for this next job.
 

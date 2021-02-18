@@ -134,14 +134,14 @@ There are two primary Claim Identifiers used to logically identify and map relat
   <tr>
    <td>Claim Group ID
    </td>
-   <td>The unique identification number of the business concept of a claim made by a provider.
+   <td>The unique identification number of the business concept of a claim made by a provider. 
 While each change to a claim will result in a new claim object, each of these “versions” falls under the same Claim Group ID. . The Claim Group ID is the parent or common identifier linking related claim object versions.
    </td>
   </tr>
   <tr>
    <td>Claim ID
    </td>
-   <td>The unique identification number of a single claim object “version”.
+   <td>The unique identification number of a single claim object “version”. 
 Each change to a claim will result in a new claim object and result in the assignment of a new unique Claim ID. Each of
 these related Claim ID will share a common Claim Group ID. A Claim ID may have multiple claim lines.
    </td>
@@ -438,7 +438,7 @@ Extensions referring to identifiers will have the following structure:
       ],
 
       // (2) system will always be
-      "system": “http://hl7.org/fhir/sid/us-mbi”
+      "system": “http://hl7.org/fhir/sid/us-mbi”,
       // (3) the actual MBI value will always be found here
       "value": "7S94E00AA00"
   }
@@ -612,7 +612,7 @@ In the example, four exports are run using the _since parameter to limit duplica
   <tr>
    <td>Export 3a
    </td>
-   <td>March15th, 2020
+   <td>March 15th, 2020
    </td>
    <td>February 14th, 2020
    </td>
@@ -622,7 +622,7 @@ In the example, four exports are run using the _since parameter to limit duplica
   <tr>
    <td>Export 3b
    </td>
-   <td>March31st, 2020
+   <td>March 31st, 2020
    </td>
    <td>February 28th, 2020
    </td>
