@@ -99,19 +99,23 @@ Key aspects of the _since parameter
 ### How the API processes the _since parameter
 
 **These changes are not yet being enforced but will be enforced at a later date. An announcement will be made before enforcement begins. Relevant PR: https://github.com/CMSgov/ab2d/pull/588**
----**The AB2D API rounds down the _since parameter to the previous Tuesday at Midnight** Eastern Standard Timezone (EST).---
 
----AB2D claims data source receives weekly updates from its upstream data source. The update process takes some time and may interfere with the _since date causing an organization to miss claims data.---
+~~**The AB2D API rounds down the _since parameter to the previous Tuesday at Midnight** Eastern Standard Timezone (EST).~~
 
----To prevent this scenario, the AB2D API rounds down the _since parameter to a date that we know an update will not be running.---
+AB2D claims data source receives weekly updates from its upstream data source. The update process takes some time and may interfere with the _since date causing an organization to miss claims data.
 
-
-### Examples
+~~To prevent this scenario, the AB2D API rounds down the _since parameter to a date that we know an update will not be running.~~
 
 
-For reference, December 1st, 2020 (2020-12-01) was a Tuesday.
+### ~~Examples~~
 
+The _since date received is processed exactly as received currently. In the future it will be rounded according to the policy mentioned earlier.
 
+**These changes are not yet being enforced but will be enforced at a later date. An announcement will be made before enforcement begins. Relevant PR: https://github.com/CMSgov/ab2d/pull/588**
+
+~~For reference, December 1st, 2020 (2020-12-01) was a Tuesday.~~
+
+<s>
 <table>
   <tr>
    <td>Since
@@ -170,7 +174,7 @@ For reference, December 1st, 2020 (2020-12-01) was a Tuesday.
    </td>
   </tr>
 </table>
-
+</s>
 
 
 ## Why you should use the _since parameter
@@ -235,7 +239,7 @@ Running the job on December 16th (2020-12-16T00:00:00-08:00)
           -H "Authorization: Basic ${BASE64_AUTH}" | jq --raw-output ".access_token")
    ```
 
-2. Start the job with the since parameter **and** save the rounded since parameter time for later use when processing the download files.
+2. Start the job with the since parameter **and** save the ~~rounded~~ since parameter time for later use when processing the download files.
 
    ```bash
    RESPONSE=$(curl "https://api.ab2d.cms.gov/api/v1/fhir/Patient/\$export?_outputFormat=application%2Ffhir%2Bndjson&_type=ExplanationOfBenefit&_since=2020-12-01T00:00:00-08:00" \
@@ -284,7 +288,7 @@ Running the job on December 30th (2020-12-16T00:00:00-08:00)
           -H "Authorization: Basic ${BASE64_AUTH}" | jq --raw-output ".access_token")
    ```
 
-2. Start the job with the since parameter **and** save the rounded since parameter time for later use when processing the download files.
+2. Start the job with the since parameter and save the ~~rounded~~ since parameter time for later use when processing the download files.
 
    Use the `Since-Datetime` from the previous job as the `_since` date for this next job.
 
