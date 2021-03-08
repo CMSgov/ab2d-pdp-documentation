@@ -98,11 +98,12 @@ Key aspects of the _since parameter
 
 ### How the API processes the _since parameter
 
-**The AB2D API rounds down the _since parameter to the previous Tuesday at Midnight** Eastern Standard Timezone (EST).
+**These changes are not yet being enforced but will be enforced at a later date. An announcement will be made before enforcement begins. Relevant PR: https://github.com/CMSgov/ab2d/pull/588**
+---**The AB2D API rounds down the _since parameter to the previous Tuesday at Midnight** Eastern Standard Timezone (EST).---
 
-AB2D claims data source receives weekly updates from its upstream data source. The update process takes some time and may interfere with the _since date causing an organization to miss claims data.
+---AB2D claims data source receives weekly updates from its upstream data source. The update process takes some time and may interfere with the _since date causing an organization to miss claims data.---
 
-To prevent this scenario, the AB2D API rounds down the _since parameter to a date that we know an update will not be running.
+---To prevent this scenario, the AB2D API rounds down the _since parameter to a date that we know an update will not be running.---
 
 
 ### Examples
