@@ -35,7 +35,9 @@ Rather than pulling all the data available to the API on each call AB2D develope
 
 Using the _since parameter reduces the time necessary to pull new data from the AB2D API by reducing the amount of duplicate data returned by the AB2D API.
 
-Internally, the AB2D API rounds down the _since parameter to the previous Tuesday at midnight Eastern Standard Timezone (EST). The reasoning and examples of this are discussed extensively in the sections below.
+**These changes are not yet being enforced but will be enforced at a later date. An announcement will be made before enforcement begins. Relevant PR: https://github.com/CMSgov/ab2d/pull/588**
+
+~~Internally, the AB2D API rounds down the _since parameter to the previous Tuesday at midnight Eastern Standard Timezone (EST). The reasoning and examples of this are discussed extensively in the sections below.~~
 
 Key aspects of the _since parameter
 
