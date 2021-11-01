@@ -51,6 +51,8 @@ List of headers that AB2D provides as responses:
 - 403 - Forbidden, authentication succeeded but the user doesn’t have permissions to access the requested data. May also be returned when authentication fails.
 - 404 - Resource or page not found. You could authenticate but the API endpoint does not exist.
 - 405 - Method not allowed. You are trying to execute a method which the endpoint does not support. Example calling /secure/get as a POST method but the endpoint actually only supports GET methods.
+- 429 - Too Many Requests. You are trying to create a Job when the max number of Jobs have been created.
+
 
 More information on standard HTTP Codes: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes 
 
@@ -78,7 +80,8 @@ More information on standard HTTP Codes: https://en.wikipedia.org/wiki/List_of_H
     1. In a browser, on the machine, go to the following URL https://api.ab2d.cms.gov/swagger-ui/index.html 
 - **If I attempt to start a job and I get __ error code, what do I do?**
     1. 403 - Then your bearer token may not be correct or may have expired, regenerate the bearer token
-    1. 400 or 404 - Then the endpoint you attempted to start a job at does not exist. Check that you are using the correct endpoint.
+    2. 400 or 404 - Then the endpoint you attempted to start a job at does not exist. Check that you are using the correct endpoint.
+    3. 429 - You have requested too many jobs. View the Content-Location Header to get the status of a job or a file.
 - **What does a 200 code mean when starting a job?** This means the export job has started successfully. In the headers in the request should be the endpoint to find out the current status of the job.
 - **What does a 202 code mean when querying the status?** This means the export job is currently running and has not finished. In the headers returned in the response you can see what % done the job is.
 - **Why is my job stuck at 0% complete? Why is my job queueing and not starting immediately?**
