@@ -34,9 +34,9 @@ Both are available using the following URLs:
 
 - R4- https://api.ab2d.cms.gov/api/v2/fhir
 - STU3-https://api.ab2d.cms.gov/api/v1/fhir
-- 
+
 Basic application functionality and API request processes are largely the same for both versions exception 
-the way they process the `_since` parameter. These differences are outlined in the `_since` section of this document below.
+the way they process the `_since` parameter. These differences are outlined in the [`_since`](#the-since-parameter) section of this document below.
 
 Differences in the data returned by each AB2D version are detailed within the [AB2D data dictionary](https://ab2d.cms.gov/data_dictionary.html).
 
@@ -129,7 +129,7 @@ Without the `_since` parameter, the second job organization XYZ runs will pull a
 The organization also pulls data from November 1st - December 1st 2020. Most of the data pulled is duplicate data. The only 
 new data pulled is from the past month. Using the `_since` parameter prevents this.
 
-With the `_since` parameter
+### With the `_since` parameter ###
 With the `_since` parameter equal to November 1st 2020 on the second job (either manually in v1/STU3 or by default in v2/R4):
 
 1. The first job takes 4 hours to export all data available to them between March 1st, 2020 and November 1st 2020.
@@ -185,7 +185,7 @@ v2 (R4) and v1 (STU3). Each command requires a valid Bearer token created by the
    ```
 
 
-**For v2 (R4)**
+### For v2 (R4) ###
 
 #### Run First Export Job v2 ####
 
@@ -263,7 +263,7 @@ Running the job on December 30th (2020-12-16T00:00:00-08:00)
 3. Repeatedly check status
 4. Download files
 
-**For v1 (STU3)**
+### For v1 (STU3) ###
 
 #### Run First Export Job v1
 
