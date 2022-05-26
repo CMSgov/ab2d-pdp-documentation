@@ -43,8 +43,7 @@ the API enforces usage restrictions and limits how long export files are stored 
 #### List of Restrictions: IMPORTANT
 1.	Each contract is limited to one running export at a time. Jobs cannot be run concurrently. A job can be canceled if it is no longer needed or incorrectly submitted before submitting a new one.
 2.	Files created by an export are only stored by the AB2D API for 72 hours after the job is complete. Files will be automatically deleted after 72 hours and a new job will have to be created.
-3.	Files created by an export can only be downloaded once. Files are immediately deleted after being downloaded.
-4.	The API can only process so many export jobs at once. If the API is busy, a submitted job may be queued for later processing. 
+3.	The API can only process so many export jobs at once. If the API is busy, a submitted job may be queued for later processing. 
 
 What you can do:
 - Start a single job, monitor the job, and download within the 72-hour period.
@@ -174,7 +173,6 @@ Additionally, read and understand the usage of the Since Parameter as detailed i
       1. Bash guide (Linux & Mac)
       1. PowerShell Guide (Windows)
       1. Python Guide (Any environment but requires Python to be installed)
-
 
 ### Requirements
 
@@ -582,8 +580,7 @@ Use the same shell used to prepare the environment variables to perform this tas
 
 #### Download the Files
 
-This process will only download the files once. Running again will not overwrite the files but will also not download anything. 
-If the download script fails you can run it again without worrying about overwriting files.
+This process will only download the files. Running again will overwrite the files. 
 
 1. In the same shell used to prepare the environment variables, download the files:
 
