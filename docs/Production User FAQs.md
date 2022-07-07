@@ -96,7 +96,7 @@ The AB2D API can only run so many jobs at once. If the API is busy the job will 
 - **Can I retrieve the results of a job that fails?** <br>No you cannot.
 - **I tried to download the files and got an error message**
     1. 403 - your bearer token may have expired or may be incorrect, regenerate the bearer token.
-    2. 4xx - the files are deleted 72 hours after a job completes or if the files have been downloaded an excessive number of times.
+    2. 4xx - the files are deleted 72 hours after a job completes or if the files have been downloaded more than six times.
 - **What is FHIR STU3 and R4?** <br>STU3 and R4 are different FHIR versions for data transmission. AB2D provides STU3 and R4 versions of one type of FHIR
 object, ExplanationOfBenefit. A detailed explanation of these versions are defined
 [here for R4](http://hl7.org/fhir/R4/explanationofbenefit.html) and [here for STU3](http://hl7.org/fhir/STU3/explanationofbenefit.html). 
