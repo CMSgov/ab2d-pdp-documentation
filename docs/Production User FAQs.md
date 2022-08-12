@@ -106,9 +106,10 @@ object, ExplanationOfBenefit. A detailed explanation of these versions are defin
   - R4 [https://api.ab2d.cms.gov/api/v2/fhir](https://api.ab2d.cms.gov/api/v2/fhir)
   - STU3 [https://api.ab2d.cms.gov/api/v2/fhir](https://api.ab2d.cms.gov/api/v1/fhir)
 
-    Requests made to both versions of the API are largely the same except how they process the
-  `_since` parameter. For the specifics regarding the way that AB2D implements the FHIR standard, the fields
-  provided and the specific differences, please go to our [website](https://ab2d.cms.gov).
+Requests made to both versions of the API are largely the same except how they process the
+  `_since` parameter. 
+
+The data returned by each AB2D version are detailed within the [AB2D Data Dictionary](https://ab2d.cms.gov/data_dictionary.html). The differences in the data returned by each AB2D version are detailed within the [AB2D Migration Guide](https://github.com/CMSgov/ab2d-pdp-documentation/AB2D%20STU3-R4%20Migration%20Guide%20Final.xlsx).
 - **What is default `_since`?**<br>
 The `_since` parameter is used to limit the returned data from the AB2D job. The `_since` date provided filters claims that were made 
 available after the specified date (as defined in the claims update date). The purpose of the `_since` parameter is to allow users to 
