@@ -62,7 +62,7 @@ Both are available using the following URLs:
 Basic application functionality and API request processes are largely the same for both versions with the exception of the way they 
 process the `_since` parameter. These differences are outlined in the `_since` section of this document below.
 
-Differences in the data returned by each AB2D version are detailed within the [AB2D data dictionary](https://ab2d.cms.gov/data_dictionary.html).
+The data returned by each AB2D version are detailed within the [AB2D Data Dictionary](https://ab2d.cms.gov/data_dictionary.html). The differences in the data returned by each AB2D version are detailed within the [AB2D Migration Guide](https://github.com/CMSgov/ab2d-pdp-documentation/AB2D%20STU3-R4%20Migration%20Guide%20Final.xlsx).
 
 ### Intended Usage / Suggestions
 
