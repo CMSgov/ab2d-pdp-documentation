@@ -38,7 +38,7 @@ Both are available using the following URLs:
 Basic application functionality and API request processes are largely the same for both versions exception 
 the way they process the `_since` parameter. These differences are outlined in the [`_since`](#the-since-parameter) section of this document below.
 
-The data returned by each AB2D version are detailed within the [AB2D Data Dictionary](https://ab2d.cms.gov/data_dictionary.html). The differences in the data returned by each AB2D version are detailed within the [AB2D Migration Guide](https://github.com/CMSgov/ab2d-pdp-documentation/blob/main/AB2D%20STU3-R4%20Migration%20Guide%20Final.xlsx).
+The data returned by each AB2D version are detailed within the [AB2D Data Dictionary](https://ab2d.cms.gov/data_dictionary.html). The differences in the data returned by each AB2D version are detailed within the [AB2D Migration Guide](https://github.com/CMSgov/ab2d-pdp-documentation/raw/main/AB2D%20STU3-R4%20Migration%20Guide%20Final.xlsx).
 
 ## The Since Parameter ##
 
