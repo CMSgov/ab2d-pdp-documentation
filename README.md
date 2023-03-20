@@ -52,7 +52,7 @@ Each user/organization is responsible for conducting their own review and testin
 **Asking for Help**
 
 If you continue to have issues accessing production or have follow up questions not answered in this guide, please
-email the AB2D team at ab2d@semanticbits.com or join our Google Groups at: [https://groups.google.com/u/1/g/cms-ab2d-api](https://groups.google.com/u/1/g/cms-ab2d-api).
+email the AB2D team at ab2d@cms.hhs.gov or join our Google Groups at: [https://groups.google.com/u/1/g/cms-ab2d-api](https://groups.google.com/u/1/g/cms-ab2d-api).
 
 When corresponding with the team please include the following information concerning the context of your issue:
 
