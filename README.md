@@ -1,5 +1,3 @@
-
-
 # Welcome to the AB2D Document Repository
 
 In this repository you will find documentation related to accessing production and retrieving production real
@@ -16,13 +14,9 @@ production environment the scripts will require use of your production credentia
 credentials are handled in a secure manner and not printed to logs or the terminal. Ensuring the privacy of data is
 the responsibility of each user and/or organization.
 
-
-## 
-**AB2D Documentation Repo Table of Contents**
+## AB2D Documentation Repo Table of Contents
 
 [AB2D Documentation Repo](https://github.com/CMSgov/ab2d-pdp-documentation)
-
-
 
 * [Accessing Production](./docs/Production%20Access.md)
   * Accessing the AB2D API for the first time
@@ -33,9 +27,7 @@ the responsibility of each user and/or organization.
 * [Production User FAQs](./docs/Production%20User%20FAQs.md)
   * Often asked questions about the AB2D API
 
-## 
-**Sample Client Repos**
-
+## Sample Client Repos
 
 The sample client repos found below are direct links to the sample scripts referenced throughout our documentation:
 
@@ -47,16 +39,12 @@ It is important to note that the AB2D team does not regularly maintain the sampl
 best-effort was made to ensure the clients are secure but they have not undergone comprehensive formal security testing.
 Each user/organization is responsible for conducting their own review and testing prior to implementation.
 
-
-## 
-**Asking for Help**
+## Asking for Help
 
 If you continue to have issues accessing production or have follow up questions not answered in this guide, please
 email the AB2D team at ab2d@cms.hhs.gov or join our Google Groups at: [https://groups.google.com/u/1/g/cms-ab2d-api](https://groups.google.com/u/1/g/cms-ab2d-api).
 
 When corresponding with the team please include the following information concerning the context of your issue:
-
-
 
 *   What operating system is in use by the machine (Windows or Linux/Mac)?
 *   What IP address does the machine have (see Verifying Setup)?
