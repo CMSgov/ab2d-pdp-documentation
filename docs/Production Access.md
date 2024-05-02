@@ -17,7 +17,7 @@ The most sensitive information provided in the credential file includes:
 ## Asking for Help
 
 If you continue to have issues accessing production or have follow-up questions not answered in this guide, please
-email the AB2D team at [ab2d@semanticbits.com](mailto:ab2d@semanticbits.com) 
+email the AB2D team at [ab2d@cms.hhs.gov](mailto:ab2d@cms.hhs.gov) 
 or join our Google Groups at: 
 [https://groups.google.com/u/1/g/cms-ab2d-api](https://groups.google.com/u/1/g/cms-ab2d-api). 
 
