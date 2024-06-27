@@ -198,7 +198,6 @@ Running the job on December 16th (2020-12-16T00:00:00-05:00)
    ```
    RESPONSE=$(curl "https://api.ab2d.cms.gov/api/v2/fhir/Patient/\$export?_outputFormat=application%2Ffhir%2Bndjson&_type=ExplanationOfBenefit \
    -sD - \
-   -H "accept: application/json" \
    -H "Accept: application/fhir+json" \
    -H "Prefer: respond-async" \
    -H "Authorization: Bearer ${BEARER_TOKEN}")
@@ -235,7 +234,6 @@ Running the job on December 30th (2020-12-16T00:00:00-08:00)
    ```
    RESPONSE=$(curl "https://api.sandbox.ab2d.cms.gov/api/v2/fhir/Patient/\$export?_outputFormat=application%2Ffhir%2Bndjson&_type=ExplanationOfBenefit \
    -sD - \
-   -H "accept: application/json" \
    -H "Accept: application/fhir+json" \
    -H "Prefer: respond-async" \
    -H "Authorization: Bearer ${BEARER_TOKEN}")
@@ -275,7 +273,6 @@ Running the job on December 16th (2020-12-16T00:00:00-08:00)
    ```bash
    RESPONSE=$(curl "https://api.ab2d.cms.gov/api/v1/fhir/Patient/\$export?_outputFormat=application%2Ffhir%2Bndjson&_type=ExplanationOfBenefit&_since=2020-12-01T00:00:00-08:00" \
         -sD - \
-        -H "accept: application/json" \
         -H "Accept: application/fhir+json" \
         -H "Prefer: respond-async" \
         -H "Authorization: Bearer ${BEARER_TOKEN}")
@@ -316,7 +313,6 @@ Running the job on December 30th (2020-12-16T00:00:00-08:00)
    ```bash
    RESPONSE=$(curl "https://api.sandbox.ab2d.cms.gov/api/v1/fhir/Patient/\$export?_outputFormat=application%2Ffhir%2Bndjson&_type=ExplanationOfBenefit&_since=2020-12-16T00:00:00-08:00" \
         -sD - \
-        -H "accept: application/json" \
         -H "Accept: application/fhir+json" \
         -H "Prefer: respond-async" \
         -H "Authorization: Bearer ${BEARER_TOKEN}")
