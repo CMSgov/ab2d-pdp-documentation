@@ -55,7 +55,7 @@ What you can do:
 
 AB2D recommends using API version 2 ([FHIR R4](https://hl7.org/fhir/R4/)), which implements the [Bulk Data Access Implementation Guide V2.0.0](https://hl7.org/fhir/uv/bulkdata/). The `_until` parameter is only available with V2. [Learn more about migrating from V1 to V2](https://github.com/CMSgov/ab2d-pdp-documentation/raw/main/AB2D%20STU3-R4%20Migration%20Guide%20Final.xlsx).
 
-The [HTTP query parameters](#http-query-parameters) section below is for V2 of the API. For organizations using V1 ([FHIR STU3](https://hl7.org/fhir/STU3/)), visit our [V1 documentation](v1-long-term-api-usage-model.md) to learn about parameters. 
+The [HTTP query parameters](#http-query-parameters) section below is for V2 of the API. For organizations using V1 ([FHIR STU3](https://hl7.org/fhir/STU3/)), visit our [V1 documentation](./V1%20Long%20Term%20API%20Usage%20Model.md) to learn about parameters. 
 
 - V2 (R4) - api.ab2d.cms.gov/api/v2/fhir
 - V1 (STU3) - api.ab2d.cms.gov/api/v1/fhir
