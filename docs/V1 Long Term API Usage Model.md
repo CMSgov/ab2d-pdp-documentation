@@ -1,6 +1,6 @@
 
 
-# Long Term API Usage Model
+# Long Term API Usage Model – V1
 
 This purpose of this document is to help users understand:
 
@@ -14,8 +14,7 @@ The goal of the AB2D API team is to provide best practices and usage strategies,
 
 The AB2D API team has provided and documented the following functionality to achieve this goal:
 
-1. The ability to pull only the most recent claims using the [_since parameter](#the-since-parameter) including an
-   [example](#run-first-export-job-v2).
+1. The ability to pull only the most recent claims using the [_since parameter](#the-since-parameter).
 1. The ability to detect claims status updates. See [Claims Representation Details](./Claims%20Representation%20Details.md) for more.
 1. The ability to detect claims updates. See [Claims Representation Details](./Claims%20Representation%20Details.md) for more.
 
@@ -93,14 +92,14 @@ In this scenario, your organization attests on March 1st, 2020. Your organizatio
 
 ### Without the `_since` Parameter ###
 
-1. The first job takes four hours to export all data available to you added between March 1st, 2020 and November 1st, 2020.
-2. The second job takes four and a half hours to export all data available to you added between March 1st, 2020 and December 1st, 2020.
+1. The first job takes 4 hours to export all data available to you added between March 1st, 2020 and November 1st, 2020.
+2. The second job takes 4 1/2 hours to export all data available to you added between March 1st, 2020 and December 1st, 2020.
 
 Without the `_since` parameter, the second job will pull all data between March 1st, 2020 and November 1st, 2020. Most of the data pulled is duplicate data. The only 
 new data pulled is from the past month (November 1st, 2020 to December 1st, 2020). Using the `_since` parameter can help prevent duplicate data and speed up job times.
 
 ### With the `_since` Parameter ###
-With the `_since` parameter manually set to November 1st, 2020 on the second job:
+With the `_since` parameter value manually set to November 1st, 2020 on the second job:
 
 1. The first job takes 4 hours to export all data available to you between March 1st, 2020 and November 1st, 2020.
 2. The second job takes 1/2 hour to only export claims data available to you between November 1st, 2020 and December 1st, 2020.
@@ -116,13 +115,13 @@ One recommended way to use AB2D is to periodically export any data that has been
 **Example Scenario**
 1. Start a job (JOB ID: ABC) and save the datetime the job started. The datetime ABC starts will be the `_since` parameter value for your next job.
 2. Wait until the next bi-weekly update (the recommended frequency to run jobs).
-3. Start a job (JOB ID: DEF), manually entering the `_since` parameter value from your most recent job in step 1. The datetime DEF starts will then be the `_since` parameter value for your next job.
+3. Start a job (JOB ID: DEF), manually entering the datetime from step 1 as the `_since` parameter value. The datetime DEF starts will then be the `_since` parameter value for your next job.
 4. Repeat steps 2 & 3 indefinitely.
 
 In this usage model, an organization only pulls the last 2 weeks of claims data delivered to the AB2D API. Please note there may be duplicates returned even when using the `_since` parameter. AB2D errs on the side of potentially providing a claim twice rather than potentially never providing a claim.
 
 ## Example Export Workflow ##
-Visit [Production Access](https://github.com/CMSgov/ab2d-pdp-documentation/blob/main/docs/Production%20Access.md) to learn more about the export workflow for the AB2D API. The `_since` parameter can be used while starting an export job. 
+Visit [Production Access](https://github.com/CMSgov/ab2d-pdp-documentation/blob/main/docs/Production%20Access.md#expected-workflow) to learn more about the export workflow for the AB2D API. The `_since` parameter can be used while starting an export job. 
 
 There are both unencoded and percent-encoded examples of the `_since` parameter. Note that ISO8601 dates include characters that can’t appear in URLs. [Learn more about percent-encoding](https://en.wikipedia.org/wiki/Percent-encoding). Only the encoded version will work, but the unencoded version will show how the URL is formed before encoding.
 
