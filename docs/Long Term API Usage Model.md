@@ -8,7 +8,7 @@ This purpose of this document is to help users understand:
 
 1. HTTP query parameters, how they're processed by the API, and why they're important to use
 2. The incremental export model
-3. How to run export jobs using `_since`
+3. How to run export jobs using `_since` and `_until`
 
 The goal of the AB2D API team is to provide best practices and usage strategies, which empower our users to efficiently use and maximize the value of our API.  This includes ensuring organizations understand how to access our production API and pull data frequently and incrementally.
 
@@ -23,7 +23,7 @@ The AB2D API team has provided and documented the following functionality to ach
 [Usage Guide](https://github.com/CMSgov/ab2d-pdp-documentation/blob/main/docs/Production%20Access.md#usage-guide) in the Production Access document before proceeding.
 
 ## AB2D API Versions
-This documentation is for AB2D API V2 ([FHIR R4](https://hl7.org/fhir/R4/)). This is the current and recommended version, which implements the [Bulk Data Access Implementation Guide V2.0.0](https://hl7.org/fhir/uv/bulkdata/). The `_until` parameter is only available with V2. For organizations using V1 ([FHIR STU3](https://hl7.org/fhir/STU3/)), visit our V1 documentation to learn about parameters. [Learn more about migrating from V1 to V2](https://github.com/CMSgov/ab2d-pdp-documentation/raw/main/AB2D%20STU3-R4%20Migration%20Guide%20Final.xlsx).
+This documentation is for AB2D API V2 ([FHIR R4](https://hl7.org/fhir/R4/)). This is the current and recommended version, which implements the [Bulk Data Access Implementation Guide V2.0.0](https://hl7.org/fhir/uv/bulkdata/). The `_until` parameter is only available with V2. For organizations using V1 ([FHIR STU3](https://hl7.org/fhir/STU3/)), visit our [V1 documentation](v1-long-term-api-usage-model.md) to learn about parameters. [Learn more about migrating from V1 to V2](https://github.com/CMSgov/ab2d-pdp-documentation/raw/main/AB2D%20STU3-R4%20Migration%20Guide%20Final.xlsx).
 
 - V2 (R4) - api.ab2d.cms.gov/api/v2/fhir
 - V1 (STU3) - api.ab2d.cms.gov/api/v1/fhir
@@ -31,11 +31,11 @@ This documentation is for AB2D API V2 ([FHIR R4](https://hl7.org/fhir/R4/)). Thi
 ## HTTP Query Parameters
 The `_since` and `_until` parameters allow users to filter claims data returned by date, which reduces duplication and speeds up job times. The parameter values follow the [ISO datetime format](https://en.wikipedia.org/wiki/ISO_8601) (`yyyy-MM-dd'T'hh:mm:ss[+|-]hh:mm`). The time zone must be specified using + or - followed by `hh:mm`. There are currently 2 optional parameters, `_since` and `_until`, which can be used separately or together: 
 
-Separately, these parameters allow users to pull data that has been updated since or until a specified date. You can use the [meta/lastUpdated](https://ab2d.cms.gov/data_dictionary.html#:~:text=The%20date%20that%20this%20record%20was%20last%20updated%20within%20the%20database.) property of each EOB resource to find when each record was last updated. This will help you compare claims data when using the  `_since` and `_until` parameters. 
+Separately, these parameters allow users to pull data last updated since **or** until a specified date. You can use the [meta/lastUpdated](https://ab2d.cms.gov/data_dictionary.html#:~:text=The%20date%20that%20this%20record%20was%20last%20updated%20within%20the%20database.) property of each ExplanationofBenefit (EOB) resource to find when each record was last updated. This will help you compare claims data when using the  `_since` and `_until` parameters. 
 - For `_since`, the earliest possible date is February 13th, 2020 (`2020-02-13T00:00:00-05:00`) or your organization's attestation date, whichever is later. If no `_since` date is specified, it will default to the datetime of your organization’s last successfully and fully downloaded job. If this is your first job, it will default to your earliest possible date. 
 - For `_until`, the latest possible date is the current date. If no `_until` date is specified or you use a date from the future, it will default to the current date. 
 
-Using the parameters together allows you to pull data that has been updated within a certain date range. However, the `_since` parameter value must be an earlier date than the `_until` parameter value. In other words, the `_until` datetime must have occurred after the `_since` datetime. 
+Using the parameters together allows you to pull data last updated within a certain date range. However, the `_since` parameter value must be an earlier date than the `_until` parameter value. In other words, the `_until` datetime must have occurred after the `_since` datetime. 
 
 ## Examples of Parameter Values
 <table>
@@ -154,8 +154,8 @@ There may be use cases where a specific date range of EOBs is required. For exam
 
 Instead of rerunning the entire job, which would take 4 hours and result in duplicate data, you decide to use the `_since` and `_until` parameters to target the corrupted data:
 
-4. Your organization identifies the corrupted data as claims last updated between November 12-18, 2023. 
-5. Your organization runs a second job and uses November 12, 2023 as the `_since` parameter value and November 18, 2023 as the `_until` parameter value. 
+4. Your organization identifies the corrupted data as claims last updated between November 12th, 2023 and November 18th, 2023. 
+5. Your organization runs a second job and uses November 12th, 2023 as the `_since` parameter value and November 18th, 2023 as the `_until` parameter value. 
 6. The job takes less than 1 hour to export the week’s worth of missing data from your database. 
 
 Using `_since` and `_until` to specify the date range of your export request speeds up job times as your organization doesn’t need to redownload unnecessary data. 
@@ -177,10 +177,10 @@ This is a scenario demonstrating how the default capability works for `_since` a
 7. Once the job is complete, download the files.
 8. Repeat.
    
-In this usage model, AB2D automatically populates the `_since` value with the datetime of your last successfully completed export. For Job GHI, this is the date job ABC was created. Job DEF isn’t considered a successfully completed export since its files weren’t downloaded.
+In this usage model, AB2D automatically populates the `_since` value with the datetime of your last successfully completed export. For job GHI, this is the date job ABC was created. Job DEF isn’t considered a successfully completed export since its files weren’t downloaded.
 
 ## Example Export Workflow Using Parameters
-Visit [Production Access](https://github.com/CMSgov/ab2d-pdp-documentation/blob/main/docs/Production%20Access.md) to learn more about the export workflow for the AB2D API. Query parameters can be used while starting an export job. 
+Visit [Production Access](https://github.com/CMSgov/ab2d-pdp-documentation/blob/main/docs/Production%20Access.md#expected-workflow) to learn more about the export workflow for the AB2D API. Query parameters can be used while starting an export job. 
 
 The following examples use `_since` and `_until` query parameters separately and together. Note that ISO8601 dates include characters that can’t appear in URLs. [Learn more about percent-encoding](https://en.wikipedia.org/wiki/Percent-encoding). There are unencoded and percent-encoded examples. Only the encoded versions will work, but the unencoded versions will show how the URL is formed before encoding.
 
