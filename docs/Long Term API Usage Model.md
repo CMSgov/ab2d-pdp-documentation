@@ -1,6 +1,6 @@
 
 
-# Long Term API Usage Model
+# Long Term API Usage Model – V2
 
 This purpose of this document is to help users understand:
 
@@ -35,7 +35,7 @@ Separately, these parameters allow users to pull data last updated since **or** 
 - For `_since`, the earliest possible date is February 13th, 2020 (`2020-02-13T00:00:00-05:00`) or your organization's attestation date, whichever is later. If no `_since` date is specified, it will default to the datetime of your organization’s last successfully and fully downloaded job. If this is your first job, it will default to your earliest possible date. 
 - For `_until`, the latest possible date is the current date. If no `_until` date is specified or you use a date from the future, it will default to the current date. 
 
-Using the parameters together allows you to pull data last updated within a certain date range. However, the `_since` parameter value must be an earlier date than the `_until` parameter value. In other words, the `_until` datetime must have occurred after the `_since` datetime. 
+Using the parameters together allows you to pull data last updated within a certain date range. However, the `_since` parameter value must be an earlier date than the `_until` parameter value. In other words, the `_since` datetime must have occurred before the `_until` datetime. 
 
 ## Examples of Parameter Values
 <table>
