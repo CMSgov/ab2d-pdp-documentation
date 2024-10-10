@@ -27,7 +27,7 @@ To help understand the `_since` parameter the following has also been included:
 [Usage Guide](https://github.com/CMSgov/ab2d-pdp-documentation/blob/main/docs/Production%20Access.md#usage-guide) in the Production Access document before proceeding.
 
 ## AB2D API Versions
-This documentation is for AB2D API V1 ([FHIR STU3](https://hl7.org/fhir/STU3/)). This is the older version, which implements the [Bulk Data Access Implementation Guide V1.0.1](https://hl7.org/fhir/uv/bulkdata/STU1.0.1/). For organizations using V2 ([FHIR R4](https://hl7.org/fhir/R4/)) as recommended, visit our [V2 documentation](https://github.com/CMSgov/ab2d-pdp-documentation/blob/main/docs/Long%20Term%20API%20Usage%20Model%20V2.md) to learn about parameters. The `_until` parameter is only available with V2.  [Learn more about migrating from V1 to V2](https://github.com/CMSgov/ab2d-pdp-documentation/raw/main/AB2D%20STU3-R4%20Migration%20Guide%20Final.xlsx). 
+This documentation is for AB2D API V1 ([FHIR STU3](https://hl7.org/fhir/STU3/)). This is the older version, which implements the [Bulk Data Access Implementation Guide V1.0.1](https://hl7.org/fhir/uv/bulkdata/STU1.0.1/). For organizations using V2 ([FHIR R4](https://hl7.org/fhir/R4/)) as recommended, visit our [V2 documentation](./Long%20Term%20API%20Usage%20Model%20V2.md) to learn about parameters. The `_until` parameter is only available with V2.  [Learn more about migrating from V1 to V2](https://github.com/CMSgov/ab2d-pdp-documentation/raw/main/AB2D%20STU3-R4%20Migration%20Guide%20Final.xlsx). 
 
 
 - V2 (R4) - api.ab2d.cms.gov/api/v2/fhir
