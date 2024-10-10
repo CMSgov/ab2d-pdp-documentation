@@ -22,8 +22,10 @@ the responsibility of each user and/or organization.
   * Accessing the AB2D API for the first time
 * [Claims Representation Details](./docs/Claims%20Representation%20Details.md)
   * How claims are represented in the AB2D API
-* [Long Term API Usage Model](./docs/Long%20Term%20API%20Usage%20Model.md)
-  * Using the AB2D API beyond your first job
+* [Long Term API Usage Model – V2](./docs/Long%20Term%20API%20Usage%20Model%20V2.md)
+  * Using the V2 of the AB2D API beyond your first job 
+* [Long Term API Usage Model – V1](./docs/Long%20Term%20API%20Usage%20Model%20V1.md)
+  * Using the V1 of the AB2D API beyond your first job
 * [Production User FAQs](./docs/Production%20User%20FAQs.md)
   * Often asked questions about the AB2D API
 
