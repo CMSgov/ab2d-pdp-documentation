@@ -23,7 +23,7 @@ The AB2D API team has provided and documented the following functionality to ach
 [Usage Guide](https://github.com/CMSgov/ab2d-pdp-documentation/blob/main/docs/Production%20Access.md#usage-guide) in the Production Access document before proceeding.
 
 ## AB2D API Versions
-This documentation is for AB2D API V2 ([FHIR R4](https://hl7.org/fhir/R4/)). This is the current and recommended version, which implements the [Bulk Data Access Implementation Guide V2.0.0](https://hl7.org/fhir/uv/bulkdata/). The `_until` parameter is only available with V2. For organizations using V1 ([FHIR STU3](https://hl7.org/fhir/STU3/)), visit our [V1 documentation](./V1%20Long%20Term%20API%20Usage%20Model.md) to learn about parameters. [Learn more about migrating from V1 to V2](https://github.com/CMSgov/ab2d-pdp-documentation/raw/main/AB2D%20STU3-R4%20Migration%20Guide%20Final.xlsx).
+This documentation is for AB2D API V2 ([FHIR R4](https://hl7.org/fhir/R4/)). This is the current and recommended version, which implements the [Bulk Data Access Implementation Guide V2.0.0](https://hl7.org/fhir/uv/bulkdata/). The `_until` parameter is only available with V2. For organizations using V1 ([FHIR STU3](https://hl7.org/fhir/STU3/)), visit our [V1 documentation](./V1%20Long%20Term%20API%20Usage%20Model%20V1.md) to learn about parameters. [Learn more about migrating from V1 to V2](https://github.com/CMSgov/ab2d-pdp-documentation/raw/main/AB2D%20STU3-R4%20Migration%20Guide%20Final.xlsx).
 
 - V2 (R4) - api.ab2d.cms.gov/api/v2/fhir
 - V1 (STU3) - api.ab2d.cms.gov/api/v1/fhir
