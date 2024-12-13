@@ -361,7 +361,7 @@ Once `monitor-job.sh` finishes, we can now download the files from AB2D (again f
 ```
 ./download-results.sh
 ```
-By default, the files will be in NDJSON (New line delimited JSON) format. That means each line in the files is one claim written in JSON. You can choose to request compressed data files and increase your download speed by including the optional “Accept-Encoding: gzip” header in your command.
+By default, the files will be in NDJSON (New line delimited JSON) format. That means each line in the files is one claim written in JSON. You can choose to request compressed data files and speed up your download times by including the optional “Accept-Encoding: gzip” header in your command.
 
 The naming standard for the files is to use the contract number and then a number indicating which value it is in the series
 of created files. In the directory you specified as the parameter to the `bootstrap.sh` command (in our case 
@@ -438,7 +438,7 @@ Check whether the files were downloaded.
 dir
 ```
    
-By default, the files will be in NDJSON (New line delimited JSON) format. That means each line in the files is one claim written in JSON. You can choose to request compressed data files and increase your download speed by including the optional “Accept-Encoding: gzip” header in your command.
+By default, the files will be in NDJSON (New line delimited JSON) format. That means each line in the files is one claim written in JSON. You can choose to request compressed data files and speed up your download times by including the optional “Accept-Encoding: gzip” header in your command.
 
 The naming standard for the files is to use the contract number and then a number indicating which value it is in the series
 of created files. For example, if there are two files for our sample contract `Z123456`, you should see:
@@ -551,7 +551,7 @@ This process will only download the files. Running again will overwrite the file
     | Linux/Mac: | `ls $DIRECTORY/*.ndjson` |
     | Windows: | `dir %TARGET_DIR%\*.ndjson` |
     
-    By default, the files will be in NDJSON (New line delimited JSON) format. That means each line in the files is one claim written in JSON. You can choose to request compressed data files and increase your download speed by including the optional “Accept-Encoding: gzip” header in your command.
+    By default, the files will be in NDJSON (New line delimited JSON) format. That means each line in the files is one claim written in JSON. You can choose to request compressed data files and speed up your download times by including the optional “Accept-Encoding: gzip” header in your command.
 
    The naming standard for the files is to use the contract number and then a number indicating which value it is in the series
     of created files. For example, if there are two files for our sample contract `Z123456`, you should see:
