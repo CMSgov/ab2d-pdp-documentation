@@ -1,6 +1,6 @@
 # Welcome to the AB2D Document Repository
 
-The documentation in this repository has been revised and moved to the new AB2D website. Please visit [API documentation](ab2d.cms.gov/api-documentation) to learn more about accessing production claims data, using parameters, and understanding claims data. 
+The documentation in this repository has been revised and moved to the new AB2D website. Please visit [API documentation](https://ab2d.cms.gov/api-documentation) to learn more about accessing production claims data, using parameters, and understanding claims data. 
 
 The repository also provides sample scripts, which demonstrate how to pull data from the AB2D API. These clients are provided as examples, but are fully functioning (with some modifications) in the production environment. 
 
