@@ -1,10 +1,16 @@
 # Welcome to the AB2D Document Repository
 
-The documentation in this repository has been revised and moved to the new AB2D website. Please visit [API documentation](https://ab2d.cms.gov/api-documentation) to learn more about accessing production claims data, using parameters, and understanding claims data. 
+The documentation in this repository has been revised and moved to the new AB2D website. Please refer to the new website links below or visit [API documentation](https://ab2d.cms.gov/api-documentation) for instructions on how to use the API: 
 
-The repository also provides sample scripts, which demonstrate how to pull data from the AB2D API. These clients are provided as examples, but are fully functioning (with some modifications) in the production environment. 
+*   Production Access has been renamed [How to Access Production Claims Data](https://ab2d.cms.gov/access-production-claims-data). 
+*   Claims Representation Details has been renamed [Claims Data Details](https://ab2d.cms.gov/claims-data-details).
+*   Long Term API Usage Model - V1 has been renamed [How to Filter Claims Data - V1](https://ab2d.cms.gov/filter-claims-data-v1).
+*   Long Term API Usage Model - V2 has been renamed [How to Filter Claims Data - V2](https://ab2d.cms.gov/filter-claims-data-v2). 
+*   Production User FAQs has been renamed [Troubleshooting Guide](https://ab2d.cms.gov/troublshooting-guide).
 
-Please ensure that your production credentials are handled securely and not printed to logs or the terminal. Ensuring the privacy of data is the responsibility of each user and/or organization.
+Moving forward, the main purpose of the repository is to provide sample scripts for AB2D. Sample scripts demonstrate how to pull claims data from the API. These clients are provided as examples, but are fully functioning (with some modifications) in the production environment. 
+
+Please ensure your production credentials are handled securely and not printed to logs or the terminal. Ensuring the privacy of data is the responsibility of each user and/or organization.
 
 ## Sample Client Repos
 *   [Python Sample Client](https://github.com/CMSgov/ab2d-sample-client-python/)
