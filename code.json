@@ -1,0 +1,67 @@
+{
+  "name": "ab2d-pdp-documentation",
+  "description": "Documentation related to accessing production and retrieving production real claims",
+  "longDescription": "In this repository you will find documentation related to accessing production and retrieving production real claims data using the AB2D (Claims Data to Part D Sponsors) API. The repository also provides sample scripts, which demonstrate how to pull data from the AB2D API.",
+  "status": "production",
+  "permissions": {
+    "licenses": [
+      {
+        "URL": "LICENSE",
+        "name": "CC0-1.0"
+      }
+    ],
+    "usageType": "openSource"
+  },
+  "organization": "Centers for Medicare & Medicaid Services",
+  "repositoryURL": "https://github.com/CMSGov/ab2d-pdp-documentation",
+  "repositoryHost": "github.com/CMSgov",
+  "repositoryVisibility": "public",
+  "vcs": "git",
+  "laborHours": null,
+  "reuseFrequency": {
+    "forks": 1
+  },
+  "platforms": [
+    "other"
+  ],
+  "categories": [
+    "healthcare"
+  ],
+  "softwareType": "standalone/other",
+  "languages": [],
+  "maintenance": "contract",
+  "contractNumber": "3",
+  "date": {
+    "created": "2020-11-19T18:58:00-05:00",
+    "lastModified": "2025-06-27T16:04:04+0000",
+    "metadataLastUpdated": "2025-06-27T16:04:04+0000"
+  },
+  "tags": [
+    "dsacms-tier3"
+  ],
+  "contact": {
+    "email": "ab2d@cms.hhs.gov",
+    "name": "CMS Open Source Program Office"
+  },
+  "feedbackMechanisms": [
+    "https://github.com/CMSGov/ab2d-pdp-documentation/issues"
+  ],
+  "localisation": "false",
+  "repositoryType": "Docs",
+  "userInput": "No",
+  "fismaLevel": "Low",
+  "group": "CMS",
+  "projects": [],
+  "systems": [],
+  "upstream": [],
+  "subsetInHealthcare": [
+    "Policy",
+    "Operational",
+    "Medicare",
+    "Medicaid"
+  ],
+  "userType": [
+    "Providers"
+  ],
+  "maturityModelTier": 3
+}
