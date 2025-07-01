@@ -2,10 +2,10 @@
 
 <!-- TODO: Who are the points of contact in your project who are responsible/accountable for the project? This can often be an engineering or design manager or leader, who may or may not be the primary maintainers of the project. List them by GitHub Username-->
 
-
+- @erichayward
 - @bennavapbc
 - @Sadibhatla
--  @smirnovaae
+- @smirnovaae
 
 
 ## Repo Domains
@@ -32,5 +32,4 @@ To set up GitHub teams:
 
 -->
 
-/docs/ {Git usernames of documentation owners}  
-/frontend/ {Git usernames of frontend owners}
+/docs/ @erichayward
