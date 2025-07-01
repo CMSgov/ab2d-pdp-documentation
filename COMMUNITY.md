@@ -25,6 +25,7 @@ The members of ab2d-pdp-documentation community are responsible for guiding its 
 
 ### Maintainers:
 
+- @erichayward
 - @bennavapbc
 - @Sadibhatla
 - @smirnovaae
@@ -33,6 +34,7 @@ The members of ab2d-pdp-documentation community are responsible for guiding its 
 
 ### Approvers:
 
+- @erichayward
 - @bennavapbc
 - @Sadibhatla
 - @smirnovaae
@@ -41,6 +43,7 @@ The members of ab2d-pdp-documentation community are responsible for guiding its 
 
 ### Reviewers:
 
+- @erichayward
 - @bennavapbc
 - @Sadibhatla
 - @smirnovaae
