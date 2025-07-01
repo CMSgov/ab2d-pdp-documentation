@@ -13,7 +13,7 @@
     "usageType": "openSource"
   },
   "organization": "Centers for Medicare & Medicaid Services",
-  "repositoryURL": "https://github.com/CMSGov/ab2d-pdp-documentation",
+  "repositoryURL": "https://github.com/CMSgov/ab2d-pdp-documentation",
   "repositoryHost": "github.com/CMSgov",
   "repositoryVisibility": "public",
   "vcs": "git",
@@ -44,7 +44,7 @@
     "name": "CMS Open Source Program Office"
   },
   "feedbackMechanisms": [
-    "https://github.com/CMSGov/ab2d-pdp-documentation/issues"
+    "https://github.com/CMSgov/ab2d-pdp-documentation/issues"
   ],
   "localisation": "false",
   "repositoryType": "Docs",
