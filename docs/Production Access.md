@@ -361,11 +361,10 @@ Once `monitor-job.sh` finishes, we can now download the files from AB2D (again f
 ```
 ./download-results.sh
 ```
-The files will be NDJSON (New line delimited JSON) files. That means each line in the files is one claim written in JSON.
-The naming standard for the files is to use the contract number and then a number indicating which value it is in the series
-of created files.
+By default, the files will be in NDJSON (New line delimited JSON) format. That means each line in the files is one claim written in JSON. You can speed up download times by requesting compressed files in gzip format with the optional `Accept-Encoding: gzip` header in your command. Afterward, decompress (unzip) the gzip files into NDJSON format.
 
-In the directory you specified as the parameter to the `bootstrap.sh` command (in our case 
+The naming standard for the files is to use the contract number and then a number indicating which value it is in the series
+of created files. In the directory you specified as the parameter to the `bootstrap.sh` command (in our case 
 `/home/abcdhome/ab2d`), you can see the files. If there are two files for our sample contract `Z123456`, you should see:
 ```
 ls /home/abcdhome/ab2d/*.ndjson
@@ -439,11 +438,10 @@ Check whether the files were downloaded.
 dir
 ```
    
-The files will be NDJSON (New line delimited JSON) files. That means each line in the files is one claim written in JSON.
+By default, the files will be in NDJSON (New line delimited JSON) format. That means each line in the files is one claim written in JSON. You can speed up download times by requesting compressed files in gzip format with the optional `Accept-Encoding: gzip` header in your command. Afterward, decompress (unzip) the gzip files into NDJSON format.
+
 The naming standard for the files is to use the contract number and then a number indicating which value it is in the series
-of created files.
-       
-For example, if there are two files for our sample contract `Z123456`, you should see:
+of created files. For example, if there are two files for our sample contract `Z123456`, you should see:
 ```
 Z123456_0001.ndjson
 Z123456_0002.ndjson
@@ -553,11 +551,10 @@ This process will only download the files. Running again will overwrite the file
     | Linux/Mac: | `ls $DIRECTORY/*.ndjson` |
     | Windows: | `dir %TARGET_DIR%\*.ndjson` |
     
-    The files will be NDJSON (New line delimited JSON) files. That means each line in the files is one claim written in JSON.
-    The naming standard for the files is to use the contract number and then a number indicating which value it is in the series
-    of created files.
-    
-    For example, if there are two files for our sample contract `Z123456`, you should see:
+    By default, the files will be in NDJSON (New line delimited JSON) format. That means each line in the files is one claim written in JSON. You can speed up download times by requesting compressed files in gzip format with the optional `Accept-Encoding: gzip` header in your command. Afterward, decompress (unzip) the gzip files into NDJSON format.
+
+   The naming standard for the files is to use the contract number and then a number indicating which value it is in the series
+    of created files. For example, if there are two files for our sample contract `Z123456`, you should see:
     ```
     Z123456_0001.ndjson
     Z123456_0002.ndjson
