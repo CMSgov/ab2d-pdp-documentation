@@ -59,23 +59,6 @@ List of headers that AB2D provides as responses:
 
 More information on standard HTTP Codes: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes 
 
-### Error Response Bodies
-In V3, 401 responses and 403 responses about your token or organization have a JSON body in the FHIR
-[OperationOutcome](https://hl7.org/fhir/R4/operationoutcome.html) format. The reason for the error is in `issue[0].details.text`:
-
-```
-{
-  "resourceType": "OperationOutcome",
-  "issue": [ {
-    "severity": "error",
-    "code": "invalid",
-    "details": { "text": "Token is invalid or expired. Request a new access token and retry" }
-  } ]
-}
-```
-
-In V1 and V2, 401 and 403 responses have an empty body. A 403 caused by an unattested contract also has an empty body in all versions.
-
 ### Troubleshooting Requests with curl
 By default curl prints only the response body. If a request fails, the status code and headers are not shown, and in
 V1/V2 an authentication failure prints nothing at all. When troubleshooting, add one of these options:
