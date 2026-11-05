@@ -25,7 +25,8 @@ When corresponding with the team please include the following information concer
 
 - What operating system is in use by the machine (Windows or Linux/Mac)?
 - What IP address does the machine have (see Verifying Setup)?
-- If applicable, what HTTP status code (403, 400, etc.) is being received?
+- If applicable, what HTTP status code (401, 403, 400, etc.) is being received?
+- If applicable, the output of the failing request run with `curl -i` (status line, response headers and body). Remove the bearer token from the output before sharing it.
 - A description of the issue including the stage of the export causing the issue.
 - Any logs that may help us in resolving the issue. Use caution when sharing any log files as they may contain sensitive information. 
 (Refer to the [Security Practices](#security-practices) section to identify sensitive information).
@@ -172,6 +173,9 @@ On the command line run one of the two following commands:
 If the response has an HTTP status of 200 then the request is okay and your IP address is allow-listed.
 
 If the response has an HTTP status of 403 your URL request has been rejected and your IP address is possibly not allow-listed.
+This 403 comes from the network firewall in front of the AB2D API, so it does not include a JSON (OperationOutcome) error body.
+A 403 that does include a JSON error body came from the AB2D API itself; read `issue[0].details.text` for the reason.
+If the request hangs or times out instead, your IP address may also not be allow-listed.
 
 ### AB2D Sandbox vs. AB2D Production
 

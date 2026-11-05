@@ -48,12 +48,35 @@ List of headers that AB2D provides as responses:
 - 202 - Request accepted but still processing
 - 400 - Bad Request, general response when something with the request is blatantly wrong. Like missing a request parameter or body.
 - 401 - Unauthorized, authentication has not been done or has not succeeded.
-- 403 - Forbidden, authentication succeeded but the user doesn't have permissions to access the requested data. May also be returned when authentication fails.
+  - V3: returned for every authentication failure (missing token, invalid or expired token). Request a new bearer token and retry.
+  - V1/V2: returned when the token or Authorization header is missing or malformed.
+- 403 - Forbidden, authentication succeeded but the user doesn't have permissions to access the requested data.
+  - V3: returned only when your token is valid but you are not allowed to make the request (for example, your organization is disabled, your contract is not attested, V3 is not enabled for your contract, or the job belongs to another organization). Contact the AB2D team.
+  - V1/V2: also returned when the token is invalid or expired.
 - 404 - Resource or page not found. You could authenticate but the API endpoint does not exist.
 - 405 - Method not allowed. You are trying to execute a method which the endpoint does not support. Example calling /secure/get as a POST method but the endpoint actually only supports GET methods.
 - 429 - Too Many Requests. You are trying to create a Job when the max number of Jobs have been created.
 
 More information on standard HTTP Codes: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes 
+
+### Troubleshooting Requests with curl
+By default curl prints only the response body. If a request fails, the status code and headers are not shown, and in
+V1/V2 an authentication failure prints nothing at all. When troubleshooting, add one of these options:
+
+- `-i` (`--include`): prints the status line and response headers before the body. Use this first.
+- `-v` (`--verbose`): also prints the request curl sent (including headers) and connection/TLS details. Use this for connection problems or to check that the Authorization header was sent as expected.
+
+```
+curl -i "https://api.ab2d.cms.gov/api/v3/fhir/Patient/\$export" \
+-H "Accept: application/fhir+json" \
+-H "Prefer: respond-async" \
+-H "Authorization: Bearer ${BEARER_TOKEN}"
+```
+
+While troubleshooting, avoid `-s` (`--silent`), which hides curl's own error messages, and `-o`, which writes the
+response body to a file instead of the terminal.
+
+The `-v` output includes your bearer token in the Authorization header. Remove it before sharing the output with anyone, including the AB2D team.
 
 ## Common User Questions
 - **What is a Bearer Token?** <br>A bearer token is just another name for a JSON Web Token (JWT).
@@ -78,7 +101,8 @@ More information on standard HTTP Codes: https://en.wikipedia.org/wiki/List_of_H
     1. In Postman type create a new GET request against the following URL: https://api.ab2d.cms.gov/health. If the response has an HTTP status of 200 then the request is okay.
     1. In a browser, on the machine, go to the following URL https://api.ab2d.cms.gov/swagger-ui/index.html 
 - **If I attempt to start a job, and I get __ error code, what do I do?**
-    1. 403 - Then your bearer token may not be correct or may have expired, regenerate the bearer token.
+    1. 401 (V3) or 403 (V1/V2) - Then your bearer token may not be correct or may have expired, regenerate the bearer token. In V3, the response body explains the reason.
+    1. 403 (V3) - Your token is valid, but you are not allowed to make this request. Read the reason in the response body and contact the AB2D team if needed.
     2. 400 or 404 - Then the endpoint you attempted to start a job at does not exist. Check that you are using the correct endpoint.
     3. 429 - You have requested too many jobs. View the Content-Location Header to get the status of a job or a file.
 - **What does a 200 code mean when starting a job?** <br>This means the export job has started successfully. In the headers in the request should be the endpoint to find out the current status of the job.
@@ -95,7 +119,8 @@ The AB2D API can only run so many jobs at once. If the API is busy the job will 
 - **What happens if the job fails?** <br>The status API will return an error concerning the job. Any files created by the job are deleted.
 - **Can I retrieve the results of a job that fails?** <br>No you cannot.
 - **I tried to download the files and got an error message**
-    1. 403 - your bearer token may have expired or may be incorrect, regenerate the bearer token.
+    1. 401 (V3) or 403 (V1/V2) - your bearer token may have expired or may be incorrect, regenerate the bearer token.
+    1. 403 (V3) - the job was created by another organization or you are not allowed to access it. Read the reason in the response body.
     2. 4xx - the files are deleted 72 hours after a job completes or if the files have been downloaded more than six times.
 - **What is FHIR STU3 and R4?** <br>STU3 and R4 are different FHIR versions for data transmission. AB2D provides STU3 and R4 versions of one type of FHIR
 object, ExplanationOfBenefit. A detailed explanation of these versions are defined
